@@ -1,8 +1,10 @@
 import { Box, Heading, Text, Image, SimpleGrid } from "@chakra-ui/react";
 import useTraditions from "../hooks/useTraditions";
+import ImageSkeleton from "./ImageSkeleton";
 
 const Tradition = () => {
-  const { traditions, error } = useTraditions();
+  const { traditions, error, isLoading } = useTraditions();
+  const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
       <Heading mx={4}>Traditions</Heading>
@@ -15,6 +17,8 @@ const Tradition = () => {
           overflowX="auto"
           p={2}
         >
+          {isLoading &&
+            skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
           {traditions.map((tradition) => (
             <div key={tradition.id}>
               <Image
