@@ -1,43 +1,35 @@
-import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Box, Heading, Text, Image, SimpleGrid } from "@chakra-ui/react";
+import useTraditions from "../hooks/useTraditions";
 
-interface Country {
-  country: string;
-}
-
-const Tradition = ({ country }: Country) => {
-  const [tradition, setTradition] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!country) return;
-
-    axios
-      .get(`https://en.wikipedia.org/api/rest_v1/page/summary/${country}`)
-      .then((res) => {
-        setTradition(res.data.extract);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching traditions:", err);
-        setTradition("Could not load tradition data.");
-        setLoading(false);
-      });
-  }, [country]);
+const Tradition = () => {
+  const { traditions, error } = useTraditions();
   return (
-    <Box p={5} textAlign="center">
-      <Heading mb={4}>Tradition {country}</Heading>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <Box maxW="800px" mx="auto">
-          <Text fontSize="lg" lineHeight="tall" textAlign="justify">
-            {tradition}
-          </Text>
-        </Box>
-      )}
-    </Box>
+    <>
+      <Heading mx={4}>Traditions</Heading>
+      <Box>
+        {error && <Text>{error}</Text>}
+        <SimpleGrid
+          columns={{ base: 2, md: 3, lg: 4, xl: 6 }}
+          spacing={3}
+          m={2}
+          overflowX="auto"
+          p={2}
+        >
+          {traditions.map((tradition) => (
+            <div key={tradition.id}>
+              <Image
+                boxSize="160px"
+                objectFit="cover"
+                src={tradition.src.large}
+                alt="Pexels"
+                borderRadius="lg"
+                flexShrink={0}
+              />
+            </div>
+          ))}
+        </SimpleGrid>
+      </Box>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import DiscoveryHub from "./components/DiscoveryHub";
+import Tradition from "./components/Tradition";
 
 function App() {
   return (
@@ -17,13 +18,16 @@ function App() {
       <GridItem area="nav">
         <NavBar />
       </GridItem>
-
-      <GridItem area="aside" bg="gold">
-        Aside
-      </GridItem>
-
+      <GridItem area="aside">Aside</GridItem>
       <GridItem area="main">
-        <DiscoveryHub />
+        <Flex align="flex-start" direction={{ base: "column", lg: "row" }}>
+          <Box flex="1">
+            <DiscoveryHub />
+          </Box>
+          <Box flex="1">
+            <Tradition />
+          </Box>
+        </Flex>
       </GridItem>
     </Grid>
   );
