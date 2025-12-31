@@ -23,8 +23,7 @@ const Flags = () => {
       bg="rgba(10, 25, 41, 0.7)"
       backdropFilter="blur(15px) saturate(150%)"
       borderRadius="xl"
-      borderColor="gold"
-      borderY="2px solid"
+      borderY="3px solid"
       boxShadow="0 10px 30px rgba(0,0,0,0.5)"
       maxW="1700px"
       mx="auto"
@@ -50,7 +49,7 @@ const Flags = () => {
               w="150px"
               h="100px"
               borderRadius="4px"
-              border="3px solid white"
+              border="2px solid white"
               boxShadow="dark-lg"
             />
           </Box>
@@ -63,7 +62,7 @@ const Flags = () => {
               w="150px"
               h="100px"
               borderRadius="4px"
-              border="3px solid white"
+              border="2px solid white"
               boxShadow="dark-lg"
             />
           </Box>
