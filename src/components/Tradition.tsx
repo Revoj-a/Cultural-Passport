@@ -11,23 +11,25 @@ const Tradition = () => {
       <Box>
         {error && <Text>{error}</Text>}
         <SimpleGrid
-          columns={{ base: 2, md: 3, lg: 4, xl: 6 }}
+          columns={{ base: 2, md: 3, lg: 4, xl: 5 }}
           spacing={3}
           m={2}
           overflowX="auto"
-          p={2}
+          p={3}
         >
           {isLoading &&
             skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
           {traditions.map((tradition) => (
             <div key={tradition.id}>
               <Image
-                boxSize="160px"
+                boxSize="130px"
                 objectFit="cover"
                 src={tradition.src.large}
                 alt="Pexels"
                 borderRadius="lg"
                 flexShrink={0}
+                transition="transform 0.3s ease"
+                _hover={{ transform: "scale(1.05)" }}
               />
             </div>
           ))}

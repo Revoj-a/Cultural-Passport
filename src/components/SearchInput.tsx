@@ -5,13 +5,18 @@ import { BsSearch } from "react-icons/bs";
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <InputGroup>
-      <InputLeftElement children={<BsSearch />}></InputLeftElement>
+    <InputGroup width="100%">
+      <InputLeftElement
+        pointerEvents="none"
+        children={<BsSearch />}
+      ></InputLeftElement>
       <Input
         ref={ref}
         borderRadius={20}
         placeholder="Random Country"
         variant="filled"
+        width="100%"
+        height="40px"
         _placeholder={{ color: "white", fontWeight: "bold" }}
       />
     </InputGroup>

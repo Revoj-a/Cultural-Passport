@@ -5,26 +5,26 @@ import { CanceledError } from "axios";
 interface Photo {
   id: number;
   url: string;
-  src: { large: string };
+  src: { medium: string };
 }
 
-interface FetchTraditionResponse {
+interface FetchFlagResponse {
   photos: Photo[];
 }
 
-const useTraditions = () => {
-  const [traditions, setTraditions] = useState<Photo[]>([]);
+const useFlags = () => {
+  const [flags, setFlags] = useState<Photo[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get<FetchTraditionResponse>("/search?query=Traditions&per_page=20", {
+      .get<FetchFlagResponse>("/search?query=Flags&per_page=10", {
         signal: controller.signal,
       })
       .then((res) => {
-        setTraditions(res.data.photos);
+        setFlags(res.data.photos);
         setLoading(false);
       })
       .catch((err) => {
@@ -34,7 +34,7 @@ const useTraditions = () => {
       });
     return () => controller.abort();
   }, []);
-  return { traditions, error, isLoading };
+  return { flags, error, isLoading };
 };
 
-export default useTraditions;
+export default useFlags;
