@@ -7,17 +7,25 @@ const Tradition = () => {
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
-      <Box mt={8}>
-        <Heading size="lg" mt={3} mx={6} color="gold" letterSpacing="tight">
+      <Box px={{ base: 2, lg: 6 }} h="100%">
+        <Heading
+          size="lg"
+          mt={5}
+          mx={7}
+          mb={4}
+          color="gold"
+          letterSpacing="tight"
+        >
           Traditions
         </Heading>
         {error && <Text>{error}</Text>}
         <SimpleGrid
-          columns={{ base: 2, md: 3, lg: 4, xl: 5 }}
-          spacing={3}
-          m={2}
+          columns={{ base: 2, md: 3, lg: 5 }}
+          spacing={2}
+          m={5}
           overflowX="auto"
           p={3}
+          justifyContent="start"
         >
           {isLoading &&
             skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
@@ -30,6 +38,7 @@ const Tradition = () => {
               overflow="visible"
             >
               <Box
+                boxSize="120px"
                 position="relative"
                 overflow="hidden"
                 borderRadius="lg"
@@ -45,7 +54,7 @@ const Tradition = () => {
                 borderColor="whiteAlpha.200"
               >
                 <Image
-                  boxSize="125px"
+                  boxSize="100%"
                   objectFit="cover"
                   src={tradition.src.large}
                   borderRadius="lg"

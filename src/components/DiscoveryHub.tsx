@@ -5,15 +5,21 @@ const DiscoveryHub = () => {
   const { photos, error } = usePhotos();
   return (
     <>
-      <Heading size="lg" my={5} color="gold" letterSpacing="tight">
-        Discovery Hub
-      </Heading>
-      <Box>
+      <Box px={{ base: 2, lg: 5 }}>
+        <Heading size="lg" my={7} color="gold" letterSpacing="tight">
+          Discovery Hub
+        </Heading>
         {error && <Text>{error}</Text>}
         {photos.map((photo) => (
-          <div key={photo.id}>
-            <Image src={photo.src.large} alt="Pexels" borderRadius="lg" />
-          </div>
+          <Box key={photo.id} h="calc(100% - 60px)">
+            <Image
+              src={photo.src.large}
+              borderRadius="lg"
+              w="100%"
+              h="100%"
+              objectFit="cover"
+            />
+          </Box>
         ))}
       </Box>
     </>

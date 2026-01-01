@@ -17,7 +17,7 @@ const Flags = () => {
       position="relative"
       overflow="hidden"
       height="180px"
-      width="100%"
+      width="90%"
       whiteSpace="nowrap"
       py={8}
       bg="rgba(10, 25, 41, 0.7)"
