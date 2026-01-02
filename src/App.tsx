@@ -4,8 +4,11 @@ import DiscoveryHub from "./components/DiscoveryHub";
 import Tradition from "./components/Tradition";
 import Flags from "./components/Flags";
 import SideBar from "./components/SideBar";
+import { useState } from "react";
+import CountrySearch from "./components/CountrySearch";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
   return (
     <Grid
       templateAreas={{
@@ -19,41 +22,48 @@ function App() {
       bg="black"
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={(text) => setSearchQuery(text)} />
       </GridItem>
       <GridItem area="aside">
         <SideBar />
       </GridItem>
       <GridItem area="main">
-        <SimpleGrid
-          columns={{ base: 1, xl: 2 }}
-          spacing={2}
-          alignItems="stretch"
-        >
-          <Box
-            border="1px solid"
-            borderColor="whiteAlpha.200"
-            borderRadius="xl"
-            display="flex"
-            flexDirection="column"
-            m={5}
-          >
-            <DiscoveryHub />
-          </Box>
-          <Box
-            border="1px solid"
-            borderColor="whiteAlpha.200"
-            borderRadius="xl"
-            display="flex"
-            flexDirection="column"
-            m={5}
-          >
-            <Tradition />
-          </Box>
-        </SimpleGrid>
-        <Box mt={10}>
-          <Flags />
+        <Box p={5}>
+          <CountrySearch searchQuery={searchQuery}></CountrySearch>
         </Box>
+        {!searchQuery && (
+          <>
+            <SimpleGrid
+              columns={{ base: 1, xl: 2 }}
+              spacing={2}
+              alignItems="stretch"
+            >
+              <Box
+                border="1px solid"
+                borderColor="whiteAlpha.200"
+                borderRadius="xl"
+                display="flex"
+                flexDirection="column"
+                m={5}
+              >
+                <DiscoveryHub />
+              </Box>
+              <Box
+                border="1px solid"
+                borderColor="whiteAlpha.200"
+                borderRadius="xl"
+                display="flex"
+                flexDirection="column"
+                m={5}
+              >
+                <Tradition />
+              </Box>
+            </SimpleGrid>
+            <Box mt={10}>
+              <Flags />
+            </Box>
+          </>
+        )}
       </GridItem>
     </Grid>
   );

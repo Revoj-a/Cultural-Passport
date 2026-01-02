@@ -1,4 +1,5 @@
 import useData from "./useData";
+import apiClient from "../services/api-client";
 
 export interface Photo {
   id: number;
@@ -7,6 +8,6 @@ export interface Photo {
 }
 
 const useTraditions = () =>
-  useData<Photo>("/search?query=Traditions&per_page=20");
+  useData<Photo>(apiClient, "/search?query=Traditions&per_page=20", "photos");
 
 export default useTraditions;

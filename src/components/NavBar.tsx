@@ -8,7 +8,11 @@ const spin = keyframes`
  to { transform: rotate(360deg); }
 `;
 
-const NavBar = () => {
+interface Props {
+  onSearch: (text: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
   return (
     <HStack
       padding="10px"
@@ -20,7 +24,7 @@ const NavBar = () => {
       borderBottom="1px solid rgba(255, 215, 0, 0.3)"
     >
       <Box flex="1" minWidth={0}>
-        <SearchInput />
+        <SearchInput onSearch={onSearch} />
       </Box>
       <Box
         p={1}

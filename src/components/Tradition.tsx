@@ -1,9 +1,9 @@
-import { Box, Heading, Text, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import useTraditions from "../hooks/useTraditions";
 import ImageSkeleton from "./ImageSkeleton";
 
 const Tradition = () => {
-  const { data, error, isLoading } = useTraditions();
+  const { data, isLoading } = useTraditions();
 
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -21,7 +21,6 @@ const Tradition = () => {
         >
           Traditions
         </Heading>
-        {error && <Text>{error}</Text>}
         <SimpleGrid
           columns={{ base: 2, md: 3, lg: 5 }}
           spacing={2}
