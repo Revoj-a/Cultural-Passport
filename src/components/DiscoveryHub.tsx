@@ -1,26 +1,35 @@
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import usePhotos from "../hooks/usePhotos";
 
 const DiscoveryHub = () => {
   const { photos, error } = usePhotos();
   return (
     <>
-      <Box px={{ base: 2, lg: 5 }}>
-        <Heading size="lg" my={7} color="gold" letterSpacing="tight">
+      <Box px={{ base: 4, md: 6, lg: 10 }}>
+        <Heading
+          size={{ base: "md", md: "lg" }}
+          my={{ base: 4, md: 7 }}
+          color="gold"
+          letterSpacing="2px"
+        >
           Discovery Hub
         </Heading>
         {error && <Text>{error}</Text>}
-        {photos.map((photo) => (
-          <Box key={photo.id} h="calc(100% - 60px)">
-            <Image
-              src={photo.src.large}
-              borderRadius="lg"
-              w="100%"
-              h="100%"
-              objectFit="cover"
-            />
-          </Box>
-        ))}
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 1 }} spacing={5}>
+          {photos.map((photo) => (
+            <Box key={photo.id}>
+              <Image
+                src={photo.src?.large}
+                borderRadius="lg"
+                maxW="100%"
+                mb={{ base: 10 }}
+                w={{ base: "100%", md: "100%" }}
+                h="auto"
+                objectFit="cover"
+              />
+            </Box>
+          ))}
+        </SimpleGrid>
       </Box>
     </>
   );

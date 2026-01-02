@@ -7,7 +7,7 @@ interface Photo {
   width: number;
   height: number;
   url: string;
-  src: { large: string };
+  src?: { large: string };
 }
 
 interface FetchPhotoResponse {

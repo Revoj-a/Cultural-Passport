@@ -35,7 +35,7 @@ const Flags = () => {
         display="flex"
         position="absolute"
         width="max-content"
-        animation={`${scroll} 10s linear infinite`}
+        animation={`${scroll} 40s linear infinite`}
         willChange="transform"
         alignItems="center"
         top="0"
@@ -45,7 +45,7 @@ const Flags = () => {
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
-              src={flag.src.medium}
+              src={flag.src?.medium}
               w="150px"
               h="100px"
               borderRadius="4px"
@@ -58,7 +58,7 @@ const Flags = () => {
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
-              src={flag.src.medium}
+              src={flag.src?.medium}
               w="150px"
               h="100px"
               borderRadius="4px"

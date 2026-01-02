@@ -14,7 +14,7 @@ const Tradition = () => {
           mx={7}
           mb={4}
           color="gold"
-          letterSpacing="tight"
+          letterSpacing="2px"
         >
           Traditions
         </Heading>
@@ -56,7 +56,7 @@ const Tradition = () => {
                 <Image
                   boxSize="100%"
                   objectFit="cover"
-                  src={tradition.src.large}
+                  src={tradition.src?.large}
                   borderRadius="lg"
                   flexShrink={0}
                   transition="transform 0.5s ease"

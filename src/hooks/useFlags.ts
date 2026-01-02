@@ -5,7 +5,7 @@ import { CanceledError } from "axios";
 interface Photo {
   id: number;
   url: string;
-  src: { medium: string };
+  src?: { medium: string };
 }
 
 interface FetchFlagResponse {

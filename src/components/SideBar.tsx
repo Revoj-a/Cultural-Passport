@@ -143,11 +143,14 @@ const SideBar = () => {
               fontSize="xs"
               textAlign="center"
               display={{ base: "none", lg: "block" }}
+              letterSpacing="2px"
             >
               Lvl 5 - World Historian
             </Text>
           </Box>
-          <List spacing={4}>{renderLinks(listLinks)}</List>
+          <List spacing={4} letterSpacing="2px">
+            {renderLinks(listLinks)}
+          </List>
           <Box display={{ base: "none", lg: "block" }}>
             <Divider borderColor="whiteAlpha.300" mb={4} />
             <Text
@@ -156,6 +159,7 @@ const SideBar = () => {
               color="gray.500"
               textTransform="uppercase"
               textAlign="center"
+              letterSpacing="2px"
               mb={2}
             >
               Specialized Features
@@ -165,7 +169,9 @@ const SideBar = () => {
             display={{ base: "block", lg: "none" }}
             borderColor="whiteAlpha.300"
           />
-          <List spacing={4}>{renderLinks(specialLizedLinks)}</List>
+          <List spacing={4} letterSpacing="2px">
+            {renderLinks(specialLizedLinks)}
+          </List>
           <Box display={{ base: "none", lg: "block" }}>
             <Divider borderColor="whiteAlpha.300" mb={4} />
             <Text
@@ -181,7 +187,9 @@ const SideBar = () => {
             display={{ base: "block", lg: "none" }}
             borderColor="whiteAlpha.300"
           />
-          <List spacing={4}>{renderLinks(settingsLinks)}</List>
+          <List spacing={4} letterSpacing="2px">
+            {renderLinks(settingsLinks)}
+          </List>
         </VStack>
       </Box>
     </>

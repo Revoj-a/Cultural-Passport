@@ -7,8 +7,8 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   fonts: {
-    heading: "'Playfair Display', serif",
-    body: "'Montserrat', sans-serif",
+    heading: "'Montserrat', sans-serif",
+    body: "'Open Sans', serif",
   },
   styles: {
     global: {
