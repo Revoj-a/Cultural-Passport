@@ -22,9 +22,9 @@ const Tradition = () => {
         <SimpleGrid
           columns={{ base: 2, md: 3, lg: 5 }}
           spacing={2}
-          m={5}
+          m={1}
           overflowX="auto"
-          p={3}
+          p={1}
           justifyContent="start"
         >
           {isLoading &&
