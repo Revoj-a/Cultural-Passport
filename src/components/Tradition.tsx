@@ -3,15 +3,18 @@ import useTraditions from "../hooks/useTraditions";
 import ImageSkeleton from "./ImageSkeleton";
 
 const Tradition = () => {
-  const { traditions, error, isLoading } = useTraditions();
-  const skeletons = [1, 2, 3, 4, 5, 6];
+  const { data, error, isLoading } = useTraditions();
+
+  const skeletons = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
   return (
     <>
       <Box px={{ base: 2, lg: 6 }} h="100%">
         <Heading
           size="lg"
           mt={5}
-          mx={7}
+          mx={2}
           mb={4}
           color="gold"
           letterSpacing="2px"
@@ -23,13 +26,13 @@ const Tradition = () => {
           columns={{ base: 2, md: 3, lg: 5 }}
           spacing={2}
           m={1}
-          overflowX="auto"
+          overflowX="visible"
           p={1}
           justifyContent="start"
         >
           {isLoading &&
             skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
-          {traditions.map((tradition) => (
+          {data.map((tradition) => (
             <Box
               key={tradition.id}
               role="group"
@@ -60,7 +63,7 @@ const Tradition = () => {
                   borderRadius="lg"
                   flexShrink={0}
                   transition="transform 0.5s ease"
-                  _groupHover={{ transform: "scale(1.1)" }}
+                  _groupHover={{ transform: "scale(1.5)" }}
                 />
                 <Box
                   position="absolute"

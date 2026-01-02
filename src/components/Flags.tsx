@@ -8,9 +8,9 @@ const scroll = keyframes`
 `;
 
 const Flags = () => {
-  const { flags, error } = useFlags();
+  const { data, error } = useFlags();
 
-  if (!flags || flags.length === 0) return null;
+  if (!data || data.length === 0) return null;
 
   return (
     <Box
@@ -41,7 +41,7 @@ const Flags = () => {
         top="0"
         height="100%"
       >
-        {flags.map((flag, index) => (
+        {data.map((flag, index) => (
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
@@ -54,7 +54,7 @@ const Flags = () => {
             />
           </Box>
         ))}
-        {flags.map((flag, index) => (
+        {data.map((flag, index) => (
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
