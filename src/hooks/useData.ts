@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
 import {
   CanceledError,
@@ -18,10 +20,14 @@ const useData = <T>(
 ) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!endpoint) return;
+    if (endpoint.includes("query=&") || endpoint.endsWith("query=")) return;
+
+    const queryValue = deps[0];
+    if (typeof queryValue === "string" && queryValue.trim().length === 0)
+      return;
 
     const controller = new AbortController();
 
@@ -31,7 +37,7 @@ const useData = <T>(
         ...requestConfig,
       })
       .then((res) => {
-        setData(res.data[dataProperty] as T[]);
+        setData((res.data[dataProperty] as T[]) || []);
         setLoading(false);
       })
       .catch((err) => {
@@ -40,7 +46,7 @@ const useData = <T>(
         setLoading(false);
       });
     return () => controller.abort();
-  }, [endpoint, apiClient, dataProperty, requestConfig, deps]);
+  }, [endpoint, ...deps]);
   return { data, error, isLoading };
 };
 

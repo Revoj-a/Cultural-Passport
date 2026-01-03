@@ -29,7 +29,7 @@ function App() {
       </GridItem>
       <GridItem area="main">
         <Box p={5}>
-          <CountrySearch searchQuery={searchQuery}></CountrySearch>
+          <CountrySearch searchQuery={searchQuery} />
         </Box>
         {!searchQuery && (
           <>

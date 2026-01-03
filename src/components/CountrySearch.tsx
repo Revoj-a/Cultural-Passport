@@ -8,6 +8,8 @@ import {
   Image,
 } from "@chakra-ui/react";
 import useCountry from "../hooks/useCountry";
+import getCroppedImageUrl from "../services/image-url";
+import noImage from "../assets/no-image.jpg";
 
 interface Props {
   searchQuery: string;
@@ -25,7 +27,7 @@ const CountrySearch = ({ searchQuery }: Props) => {
   return (
     <HStack
       w="100%"
-      h="600px"
+      h="800px"
       overflowY="auto"
       p={2}
       css={{
@@ -37,8 +39,8 @@ const CountrySearch = ({ searchQuery }: Props) => {
         },
       }}
     >
-      {isLoading && <Spinner />}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 6 }} spacing={5}>
+        {isLoading && <Spinner />}
         {results.map((item) => (
           <Box
             key={item.id}
@@ -50,11 +52,12 @@ const CountrySearch = ({ searchQuery }: Props) => {
           >
             {item.edmIsShownBy?.[0] ? (
               <Image
-                src={item.edmIsShownBy[0]}
+                src={getCroppedImageUrl(item.edmIsShownBy[0])}
                 alt={item.title?.[0]}
                 objectFit="cover"
                 h="200px"
                 w="100%"
+                fallbackSrc={noImage}
               />
             ) : (
               <Box
@@ -68,7 +71,7 @@ const CountrySearch = ({ searchQuery }: Props) => {
               </Box>
             )}
             <Box p={4}>
-              <Badge colorScheme="yellow" mb={2}>
+              <Badge colorScheme="yellow" mb={2} whiteSpace="normal">
                 {item.edmcountry?.[0] ||
                   item.dataProvider?.[0] ||
                   "Europeana Collection"}

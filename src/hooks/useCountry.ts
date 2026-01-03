@@ -13,8 +13,10 @@ export interface Country {
 const useCountry = (searchQuery: string) =>
   useData<Country>(
     europeanaClient,
-    `/search.json?query=${searchQuery}`,
-    "items"
+    "/search.json",
+    "items",
+    { params: { query: searchQuery, profile: "rich" } },
+    [searchQuery]
   );
 
 export default useCountry;
