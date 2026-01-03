@@ -6,10 +6,12 @@ import {
   HStack,
   Badge,
   Image,
+  IconButton,
 } from "@chakra-ui/react";
 import useCountry from "../hooks/useCountry";
 import getCroppedImageUrl from "../services/image-url";
 import noImage from "../assets/no-image.jpg";
+import { FaHeart, FaThumbsUp } from "react-icons/fa";
 
 interface Props {
   searchQuery: string;
@@ -25,31 +27,71 @@ const CountrySearch = ({ searchQuery }: Props) => {
   if (!searchQuery) return null;
 
   return (
-    <HStack
-      w="100%"
-      h="800px"
-      overflowY="auto"
-      p={2}
-      css={{
-        "&::-webkit-scrollbar": { width: "8px" },
-        "&::-webkit-scrollbar-track": { background: "transparent" },
-        "&::-webkit-scrollbar-thumb": {
-          background: "D4AF37",
-          borderRadius: "24px",
-        },
-      }}
-    >
+    <HStack w="100%" h="800px" overflowY="auto" p={2}>
       <SimpleGrid columns={{ base: 1, md: 2, lg: 6 }} spacing={5}>
         {isLoading && <Spinner />}
         {results.map((item) => (
           <Box
             key={item.id}
+            role="group"
+            position="relative"
             borderRadius="lg"
             overflow="hidden"
             border="1px solid"
             borderColor="whiteAlpha.200"
             bg="whiteAlpha.50"
+            cursor="pointer"
+            transition="transform 0.15s ease-in-out"
+            _hover={{
+              transform: "scale(1.03)",
+              borderColor: "gold",
+              boxShadow: "0px 0px 20px rgba(212, 175, 55, 03)",
+            }}
           >
+            <HStack
+              position="absolute"
+              top={2}
+              right={2}
+              zIndex={2}
+              spacing={2}
+            >
+              <IconButton
+                aria-label="Heart"
+                icon={<FaHeart />}
+                size="sm"
+                opacity={0}
+                variant="solid"
+                bg="blackAlpha.600"
+                color="white"
+                borderRadius="full"
+                transition="all 0.3s ease"
+                _groupHover={{ opacity: 1, transform: "translateY(5px)" }}
+                _hover={{
+                  color: "red.500",
+                  transform: "scale(1.2)",
+                  bg: "blackAlpha.800",
+                }}
+                onClick={(e) => e.stopPropagation()}
+              />
+              <IconButton
+                aria-label="Like"
+                icon={<FaThumbsUp />}
+                size="sm"
+                opacity={0}
+                variant="solid"
+                bg="blackAlpha.600"
+                color="white"
+                borderRadius="full"
+                transition="all 0.3 ease"
+                _groupHover={{ opacity: 1, transform: "translateY(5px)" }}
+                _hover={{
+                  color: "blue.400",
+                  transform: "scale(1.2)",
+                  bg: "blackAlpha.800",
+                }}
+                onClick={(e) => e.stopPropagation()}
+              ></IconButton>
+            </HStack>
             {item.edmIsShownBy?.[0] ? (
               <Image
                 src={getCroppedImageUrl(item.edmIsShownBy[0])}
