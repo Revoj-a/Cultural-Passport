@@ -6,6 +6,7 @@ import Flags from "./components/Flags";
 import SideBar from "./components/SideBar";
 import { useState } from "react";
 import CountrySearch from "./components/CountrySearch";
+import CountryHeading from "./components/CountryHeading";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,15 +23,19 @@ function App() {
       bg="black"
     >
       <GridItem area="nav">
-        <NavBar onSearch={(text) => setSearchQuery(text)} />
+        <NavBar onSearch={(searchText) => setSearchQuery(searchText)} />
       </GridItem>
       <GridItem area="aside">
         <SideBar />
       </GridItem>
       <GridItem area="main">
+        <Box position="absolute" marginX={7} marginY={8}>
+          <CountryHeading searchQuery={searchQuery} />
+        </Box>
         <Box p={5}>
           <CountrySearch searchQuery={searchQuery} />
         </Box>
+
         {!searchQuery && (
           <>
             <SimpleGrid

@@ -9,7 +9,7 @@ const spin = keyframes`
 `;
 
 interface Props {
-  onSearch: (text: string) => void;
+  onSearch: (searchText: string) => void;
 }
 
 const NavBar = ({ onSearch }: Props) => {
