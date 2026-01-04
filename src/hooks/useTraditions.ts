@@ -1,5 +1,4 @@
-import useData from "./useData";
-import apiClient from "../services/api-client";
+import tradition from "../data/tradition";
 
 export interface Photo {
   id: number;
@@ -7,7 +6,10 @@ export interface Photo {
   src?: { large: string };
 }
 
-const useTraditions = () =>
-  useData<Photo>(apiClient, "/search?query=Traditions&per_page=20", "photos");
+const useTraditions = () => ({
+  data: tradition,
+  isLoading: false,
+  error: null,
+});
 
 export default useTraditions;

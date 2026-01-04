@@ -29,7 +29,7 @@ function App() {
         <SideBar />
       </GridItem>
       <GridItem area="main">
-        <Box position="absolute" marginX={7} marginY={8}>
+        <Box>
           <CountryHeading searchQuery={searchQuery} />
         </Box>
         <Box p={5}>

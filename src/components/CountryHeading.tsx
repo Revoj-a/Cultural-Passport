@@ -6,7 +6,11 @@ interface Props {
 
 const CountryHeading = ({ searchQuery }: Props) => {
   const heading = `${searchQuery}`;
-  return <Heading as="h1">{heading}</Heading>;
+  return (
+    <Heading as="h1" position="absolute" marginX={7} marginY={8}>
+      {heading}
+    </Heading>
+  );
 };
 
 export default CountryHeading;

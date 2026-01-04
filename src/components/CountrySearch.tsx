@@ -7,6 +7,7 @@ import {
   Badge,
   Image,
   IconButton,
+  Tooltip,
 } from "@chakra-ui/react";
 import useCountry from "../hooks/useCountry";
 import getCroppedImageUrl from "../services/image-url";
@@ -55,42 +56,59 @@ const CountrySearch = ({ searchQuery }: Props) => {
               zIndex={2}
               spacing={2}
             >
-              <IconButton
-                aria-label="Heart"
-                icon={<FaHeart />}
-                size="sm"
-                opacity={0}
-                variant="solid"
-                bg="blackAlpha.600"
-                color="white"
-                borderRadius="full"
-                transition="all 0.3s ease"
-                _groupHover={{ opacity: 1, transform: "translateY(5px)" }}
-                _hover={{
-                  color: "red.500",
-                  transform: "scale(1.2)",
-                  bg: "blackAlpha.800",
-                }}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <IconButton
-                aria-label="Like"
-                icon={<FaThumbsUp />}
-                size="sm"
-                opacity={0}
-                variant="solid"
-                bg="blackAlpha.600"
-                color="white"
-                borderRadius="full"
-                transition="all 0.3 ease"
-                _groupHover={{ opacity: 1, transform: "translateY(5px)" }}
-                _hover={{
-                  color: "blue.400",
-                  transform: "scale(1.2)",
-                  bg: "blackAlpha.800",
-                }}
-                onClick={(e) => e.stopPropagation()}
-              ></IconButton>
+              <Tooltip
+                label="Add this item to a gallery."
+                hasArrow
+                placement="top"
+                bg="white"
+              >
+                <IconButton
+                  aria-label="Heart"
+                  icon={<FaHeart />}
+                  size="sm"
+                  opacity={0}
+                  variant="solid"
+                  bg="blackAlpha.600"
+                  color="white"
+                  borderRadius="full"
+                  transition="all 0.3s ease"
+                  _groupHover={{
+                    opacity: 1,
+                    transform: "translateY(5px)",
+                  }}
+                  _hover={{
+                    color: "red.500",
+                    transform: "scale(1.2)",
+                    bg: "blackAlpha.800",
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </Tooltip>
+              <Tooltip
+                label="Save this item to your likes."
+                hasArrow
+                placement="top"
+                bg="white"
+              >
+                <IconButton
+                  aria-label="Like"
+                  icon={<FaThumbsUp />}
+                  size="sm"
+                  opacity={0}
+                  variant="solid"
+                  bg="blackAlpha.600"
+                  color="white"
+                  borderRadius="full"
+                  transition="all 0.3 ease"
+                  _groupHover={{ opacity: 1, transform: "translateY(5px)" }}
+                  _hover={{
+                    color: "blue.400",
+                    transform: "scale(1.2)",
+                    bg: "blackAlpha.800",
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </Tooltip>
             </HStack>
             {item.edmIsShownBy?.[0] ? (
               <Image
