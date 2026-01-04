@@ -1,4 +1,4 @@
-import { Box, Spinner, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import useCountryFlag from "../hooks/useCountryFlag";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 const CountryFlag = ({ searchQuery }: Props) => {
   const { data, isLoading } = useCountryFlag(searchQuery);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return null;
   if (!data || data.length === 0) return null;
 
   return (

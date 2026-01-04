@@ -1,27 +1,26 @@
 import {
-  Spinner,
-  Text,
-  SimpleGrid,
+  Badge,
   Box,
   HStack,
-  Badge,
-  Image,
   IconButton,
+  Image,
+  SimpleGrid,
+  Text,
   Tooltip,
 } from "@chakra-ui/react";
+import { FaHeart, FaThumbsUp } from "react-icons/fa";
+import noImage from "../assets/no-image.jpg";
 import useCountry from "../hooks/useCountry";
 import getCroppedImageUrl from "../services/image-url";
-import noImage from "../assets/no-image.jpg";
-import { FaHeart, FaThumbsUp } from "react-icons/fa";
 
 interface Props {
   searchQuery: string;
 }
 
 const CountrySearch = ({ searchQuery }: Props) => {
-  const { data, isLoading } = useCountry(searchQuery);
+  const { data } = useCountry(searchQuery);
 
-  const results = data.filter(
+  const results = data?.filter(
     (item) => item.edmIsShownBy && item.edmIsShownBy.length > 0
   );
 
@@ -30,8 +29,7 @@ const CountrySearch = ({ searchQuery }: Props) => {
   return (
     <HStack w="100%" h="800px" overflowY="auto" p={2}>
       <SimpleGrid columns={{ base: 1, md: 2, lg: 6 }} spacing={5}>
-        {isLoading && <Spinner />}
-        {results.map((item) => (
+        {results?.map((item) => (
           <Box
             key={item.id}
             role="group"

@@ -7,7 +7,7 @@ import {
   type AxiosRequestConfig,
 } from "axios";
 
-interface FetchCountryResponse {
+export interface FetchResponse {
   [key: string]: unknown;
 }
 
@@ -38,7 +38,7 @@ const useData = <T>(
     const controller = new AbortController();
 
     apiClient
-      .get<FetchCountryResponse>(endpoint, {
+      .get<FetchResponse>(endpoint, {
         signal: controller.signal,
         ...requestConfig,
       })

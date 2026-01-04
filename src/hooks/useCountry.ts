@@ -1,7 +1,7 @@
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
 import europeanaClient from "../services/europeana-client";
 
-export interface Country {
+interface Country {
   id: string;
   title: string[];
   edmcountry?: string[];
@@ -10,13 +10,24 @@ export interface Country {
   dataProvider?: string[];
 }
 
+interface FetchCountryResponse {
+  items: Country[];
+}
+
 const useCountry = (searchQuery: string) =>
-  useData<Country>(
-    europeanaClient,
-    "/search.json",
-    "items",
-    { params: { query: searchQuery, profile: "rich" } },
-    [searchQuery]
-  );
+  useQuery<Country[], Error>({
+    queryKey: ["countries", searchQuery],
+    queryFn: () =>
+      europeanaClient
+        .get<FetchCountryResponse>("/search.json", {
+          params: {
+            query: searchQuery,
+            profile: "rich",
+          },
+        })
+        .then((res) => res.data.items),
+    enabled: !!searchQuery,
+    staleTime: 1000 * 60 * 5,
+  });
 
 export default useCountry;

@@ -11,7 +11,7 @@ const Flags = () => {
   const { data, error } = useFlags();
 
   if (!data || data.length === 0) return null;
-  if (error) return <Text color="red">{error}</Text>;
+  if (error) return <Text color="red">{error.message}</Text>;
 
   return (
     <Box
