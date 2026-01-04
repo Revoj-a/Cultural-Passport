@@ -11,6 +11,7 @@ const Flags = () => {
   const { data, error } = useFlags();
 
   if (!data || data.length === 0) return null;
+  if (error) return <Text color="red">{error}</Text>;
 
   return (
     <Box
@@ -30,7 +31,6 @@ const Flags = () => {
       mt={10}
       px={{ base: 4, md: 8 }}
     >
-      {error && <Text>{error}</Text>}
       <Box
         display="flex"
         position="absolute"

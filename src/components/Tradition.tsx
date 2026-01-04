@@ -8,96 +8,87 @@ const Tradition = () => {
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
+  if (error) return <Text color="red">{error}</Text>;
   return (
-    <>
-      <Box px={{ base: 2, lg: 6 }} h="100%">
-        <Heading
-          size="lg"
-          mt={5}
-          mx={2}
-          mb={4}
-          color="gold"
-          letterSpacing="2px"
-        >
-          Traditions
-        </Heading>
-        {error && <Text color="red">{error}</Text>}
-        <SimpleGrid
-          columns={{ base: 2, md: 3, lg: 5 }}
-          spacing={2}
-          m={1}
-          overflowX="visible"
-          p={1}
-          justifyContent="start"
-        >
-          {isLoading &&
-            skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
-          {data.map((tradition) => (
+    <Box px={{ base: 2, lg: 6 }} h="100%">
+      <Heading size="lg" mt={5} mx={2} mb={4} color="gold" letterSpacing="2px">
+        Traditions
+      </Heading>
+      <SimpleGrid
+        columns={{ base: 2, md: 3, lg: 5 }}
+        spacing={2}
+        m={1}
+        overflowX="visible"
+        p={1}
+        justifyContent="start"
+      >
+        {isLoading &&
+          skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
+        {data.map((tradition) => (
+          <Box
+            key={tradition.id}
+            role="group"
+            position="relative"
+            cursor="pointer"
+            overflow="visible"
+          >
             <Box
-              key={tradition.id}
-              role="group"
+              boxSize="120px"
               position="relative"
-              cursor="pointer"
-              overflow="visible"
+              overflow="hidden"
+              borderRadius="lg"
+              boxShadow="md"
+              bg="black"
+              transition="all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+              _groupHover={{
+                transform: "translateY(-12px) rotate(1deg)",
+                boxShadow: "0px 20px 30px rgba(0, 0, 0, 0.6)",
+                borderColor: "gold",
+              }}
+              border="1px solid"
+              borderColor="whiteAlpha.200"
             >
-              <Box
-                boxSize="120px"
-                position="relative"
-                overflow="hidden"
+              <Image
+                boxSize="100%"
+                objectFit="cover"
+                src={tradition.src?.large}
                 borderRadius="lg"
-                boxShadow="md"
-                bg="black"
-                transition="all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+                flexShrink={0}
+                transition="transform 0.5s ease"
+                _groupHover={{ transform: "scale(1.5)" }}
+              />
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%) scale(2) rotate(-20deg)"
+                opacity={0}
+                zIndex={2}
+                transition="all 0.4s ease"
                 _groupHover={{
-                  transform: "translateY(-12px) rotate(1deg)",
-                  boxShadow: "0px 20px 30px rgba(0, 0, 0, 0.6)",
-                  borderColor: "gold",
+                  opacity: 0.8,
+                  transform: "translate(-50%, -50%) scale(1) rotate(-15deg)",
                 }}
-                border="1px solid"
-                borderColor="whiteAlpha.200"
+                pointerEvents="none"
               >
-                <Image
-                  boxSize="100%"
-                  objectFit="cover"
-                  src={tradition.src?.large}
-                  borderRadius="lg"
-                  flexShrink={0}
-                  transition="transform 0.5s ease"
-                  _groupHover={{ transform: "scale(1.5)" }}
-                />
                 <Box
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="translate(-50%, -50%) scale(2) rotate(-20deg)"
-                  opacity={0}
-                  zIndex={2}
-                  transition="all 0.4s ease"
-                  _groupHover={{
-                    opacity: 0.8,
-                    transform: "translate(-50%, -50%) scale(1) rotate(-15deg)",
-                  }}
-                  pointerEvents="none"
+                  border="4px solid gold"
+                  color="gold"
+                  px={2}
+                  py={1}
+                  fontSize="xs"
+                  fontWeight="black"
+                  borderRadius="sm"
+                  textTransform="uppercase"
                 >
-                  <Box
-                    border="4px solid gold"
-                    color="gold"
-                    px={2}
-                    py={1}
-                    fontSize="xs"
-                    fontWeight="black"
-                    borderRadius="sm"
-                    textTransform="uppercase"
-                  >
-                    Certified
-                  </Box>
+                  Certified
                 </Box>
               </Box>
             </Box>
-          ))}
-        </SimpleGrid>
-      </Box>
-    </>
+          </Box>
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
 

@@ -23,7 +23,13 @@ const useData = <T>(
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (endpoint.includes("query=&") || endpoint.endsWith("query=")) return;
+    if (
+      !endpoint ||
+      endpoint.endsWith("query") ||
+      endpoint.endsWith("/name") ||
+      endpoint.endsWith("/name")
+    )
+      return;
 
     const queryValue = deps[0];
     if (typeof queryValue === "string" && queryValue.trim().length === 0)
@@ -37,7 +43,10 @@ const useData = <T>(
         ...requestConfig,
       })
       .then((res) => {
-        setData((res.data[dataProperty] as T[]) || []);
+        const result = dataProperty
+          ? (res.data[dataProperty] as T[])
+          : (res.data as unknown as T[]);
+        setData(result || []);
         setLoading(false);
       })
       .catch((err) => {
