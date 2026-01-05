@@ -18,26 +18,28 @@ import SettingIcon from "../assets/setting.png";
 import LogoutIcon from "../assets/logout.png";
 import Traveler from "../assets/no-pic.jpg";
 import { keyframes } from "@emotion/react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 interface Props {
   name: string;
   icon: string;
+  path?: string;
 }
 
 const listLinks = [
-  { name: "Home", icon: HomeIcon },
-  { name: "My Collection", icon: MapIcon },
-  { name: "Cultural Map", icon: LocationIcon },
+  { name: "Home", icon: HomeIcon, path: "/" },
+  { name: "My Collection", icon: MapIcon, path: "/collection" },
+  { name: "Cultural Map", icon: LocationIcon, path: "/map" },
 ];
 
 const specialLizedLinks = [
-  { name: "Phrase Book", icon: PhraseBookIcon },
-  { name: "Heritage Events", icon: HeritageEventIcon },
+  { name: "Phrase Book", icon: PhraseBookIcon, path: "/phrasebook" },
+  { name: "Heritage Events", icon: HeritageEventIcon, path: "/heritage" },
 ];
 
 const settingsLinks = [
-  { name: "Settings", icon: SettingIcon },
-  { name: "Logout", icon: LogoutIcon },
+  { name: "Settings", icon: SettingIcon, path: "/settings" },
+  { name: "Logout", icon: LogoutIcon, path: "/logout" },
 ];
 
 const picAnimate = keyframes`
@@ -54,37 +56,39 @@ const SideBar = () => {
         role="group"
         transition="background 0.2s"
       >
-        <HStack
-          spacing={4}
-          p="2px"
-          minW="max-content"
-          justify={{ base: "center", lg: "flex-start" }}
-        >
-          <Image
-            src={link.icon}
-            boxSize="25px"
-            filter="grayscale(100%)"
-            _groupHover={{ filter: "none" }}
-          />
-          <Text
-            display={{ base: "none", lg: "block" }}
-            fontSize="md"
-            fontWeight="medium"
-            whiteSpace="none"
-            color="gray.300"
-            _groupHover={{ color: "gold" }}
+        <ReactRouterLink to={link.path || "/"}>
+          <HStack
+            spacing={4}
+            p="2px"
+            minW="max-content"
+            justify={{ base: "center", lg: "flex-start" }}
           >
-            {link.name}
-          </Text>
-        </HStack>
-        <Box
-          h="2px"
-          w="0%"
-          bg="gold"
-          transition="width 0.3s"
-          _groupHover={{ w: "100%" }}
-          display={{ base: "none", lg: "block" }}
-        ></Box>
+            <Image
+              src={link.icon}
+              boxSize="25px"
+              filter="grayscale(100%)"
+              _groupHover={{ filter: "none" }}
+            />
+            <Text
+              display={{ base: "none", lg: "block" }}
+              fontSize="md"
+              fontWeight="medium"
+              whiteSpace="nowrap"
+              color="gray.300"
+              _groupHover={{ color: "gold" }}
+            >
+              {link.name}
+            </Text>
+          </HStack>
+          <Box
+            h="2px"
+            w="0%"
+            bg="gold"
+            transition="width 0.3s"
+            _groupHover={{ w: "100%" }}
+            display={{ base: "none", lg: "block" }}
+          ></Box>
+        </ReactRouterLink>
       </ListItem>
     ));
   return (

@@ -1,4 +1,4 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
@@ -19,17 +19,21 @@ const SearchBar = ({ onSearch }: Props) => {
           }
         }}
       >
-        <InputGroup width="40%">
+        <InputGroup width="100%">
           <InputLeftElement
             pointerEvents="none"
-            children={<BsSearch />}
+            children={
+              <Box display="flex" alignItems="center" justifyContent="center">
+                <BsSearch />
+              </Box>
+            }
           ></InputLeftElement>
           <Input
             ref={ref}
-            borderRadius={15}
-            placeholder="Search for a phrase or category"
+            borderRadius={20}
+            placeholder="Search for a phrases or category"
             variant="filled"
-            width="40%"
+            width="100%"
             height="35px"
             _placeholder={{ color: "white", fontWeight: "bold" }}
           ></Input>
