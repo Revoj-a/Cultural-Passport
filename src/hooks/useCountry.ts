@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import europeanaClient from "../services/europeana-client";
 
 interface Country {
@@ -27,7 +28,7 @@ const useCountry = (searchQuery: string) =>
         })
         .then((res) => res.data.items),
     enabled: !!searchQuery,
-    staleTime: 1000 * 60 * 5,
+    staleTime: ms("5m"),
   });
 
 export default useCountry;

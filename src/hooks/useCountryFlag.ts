@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import restcountriesClient from "../services/restcountries-client";
 
 interface CountryData {
@@ -16,7 +17,7 @@ const useCountryFlag = (searchQuery: string) =>
         .get<CountryData[]>(`/name/${searchQuery}`)
         .then((res) => res.data),
     enabled: !!searchQuery,
-    staleTime: 1000 * 60 * 60 * 24,
+    staleTime: ms("24h"),
   });
 
 export default useCountryFlag;

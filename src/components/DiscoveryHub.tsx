@@ -16,7 +16,7 @@ const DiscoveryHub = () => {
         </Heading>
         {error && <Text color="red">{error.message}</Text>}
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 1 }} spacing={5}>
-          {data?.map((photo) => (
+          {data?.photos?.map((photo) => (
             <Box key={photo.id}>
               <Image
                 src={photo.src?.large}

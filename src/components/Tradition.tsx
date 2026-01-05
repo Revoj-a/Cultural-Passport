@@ -8,6 +8,7 @@ const Tradition = () => {
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
+
   if (error) return <Text color="red">{error.message}</Text>;
   return (
     <Box px={{ base: 2, lg: 6 }} h="100%">
@@ -24,7 +25,7 @@ const Tradition = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
-        {data?.map((tradition) => (
+        {data?.photos?.map((tradition) => (
           <Box
             key={tradition.id}
             role="group"

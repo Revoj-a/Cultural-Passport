@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient from "../services/api-client";
+import ms from "ms";
+import APIClient, { type FetchPhotosResponse } from "../services/api-client";
 
 interface Photo {
   id: number;
@@ -9,18 +10,19 @@ interface Photo {
   src?: { large: string };
 }
 
-interface FetchPhotosResponse {
-  photos: Photo[];
-}
+const apiClient = new APIClient<Photo>("/search");
 
 const usePhotos = () =>
-  useQuery<Photo[], Error>({
+  useQuery<FetchPhotosResponse<Photo>, Error>({
     queryKey: ["photos", "culture"],
     queryFn: () =>
-      apiClient
-        .get<FetchPhotosResponse>("/search?query=Culture&per_page=1")
-        .then((res) => res.data.photos),
-    staleTime: 1000 * 60 * 5,
+      apiClient.getAll({
+        params: {
+          query: "Culture",
+          per_page: 1,
+        },
+      }),
+    staleTime: ms("5m"),
   });
 
 export default usePhotos;

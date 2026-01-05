@@ -10,7 +10,6 @@ const scroll = keyframes`
 const Flags = () => {
   const { data, error } = useFlags();
 
-  if (!data || data.length === 0) return null;
   if (error) return <Text color="red">{error.message}</Text>;
 
   return (
@@ -41,7 +40,7 @@ const Flags = () => {
         top="0"
         height="100%"
       >
-        {data.map((flag, index) => (
+        {data?.photos?.map((flag, index) => (
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
@@ -54,7 +53,7 @@ const Flags = () => {
             />
           </Box>
         ))}
-        {data.map((flag, index) => (
+        {data?.photos?.map((flag, index) => (
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
               objectFit="cover"
