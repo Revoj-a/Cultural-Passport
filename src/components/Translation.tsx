@@ -11,6 +11,33 @@ interface Props {
 const Translation = ({ phrase, langCode, langName }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
 
+  const handlePlay = () => {
+    if (!data?.translatedText) return;
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(data.translatedText);
+
+    const speechCode =
+      langCode === "ar" ? "ar-SA" : langCode === "th" ? "th-TH" : langCode;
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find((v) =>
+      v.lang.replace("_", "-").startsWith(speechCode)
+    );
+
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    } else {
+      utterance.lang = speechCode;
+    }
+
+    utterance.pitch = 1;
+    utterance.rate = 0.9;
+
+    window.speechSynthesis.speak(utterance);
+  };
+
   if (error)
     return (
       <Text color="red.300" fontSize="xs">
@@ -37,11 +64,14 @@ const Translation = ({ phrase, langCode, langName }: Props) => {
         </Text>
       </VStack>
       <IconButton
-        aria-label="play"
+        aria-label={`Play translation in ${langName}`}
         icon={<FaPlay size="10px" />}
         size="sm"
         isRound
         bg="yellow.300"
+        _hover={{ bg: "yellow.400" }}
+        onClick={handlePlay}
+        isDisabled={isLoading || !data?.translatedText}
       ></IconButton>
     </HStack>
   );

@@ -9,7 +9,7 @@ const spin = keyframes`
 `;
 
 interface Props {
-  onSearch: (searchText: string) => void;
+  onSearch?: (searchText: string) => void;
 }
 
 const NavBar = ({ onSearch }: Props) => {
@@ -24,7 +24,9 @@ const NavBar = ({ onSearch }: Props) => {
       borderBottom="1px solid rgba(255, 215, 0, 0.3)"
     >
       <Box flex="1" minWidth={0}>
-        <SearchInput onSearch={onSearch} />
+        <SearchInput
+          onSearch={(searchText) => onSearch && onSearch(searchText)}
+        />
       </Box>
       <Box
         p={1}
