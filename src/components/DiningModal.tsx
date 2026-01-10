@@ -91,7 +91,7 @@ const DiningModal = ({ phrase, onClose }: Props) => {
                 Table Manners & Gestures
               </Text>
             </HStack>
-            <Text fontSize="sm" lineHeight="tall">
+            <Text fontSize="sm" lineHeight="tall" textAlign="justify">
               {phrase.gesture}
             </Text>
           </Box>
