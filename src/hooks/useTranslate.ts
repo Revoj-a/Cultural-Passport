@@ -5,6 +5,7 @@ import ms from "ms";
 interface TranslationResponse {
   translatedText: string;
   etiquette: string;
+  gesture: string;
 }
 
 const useTranslate = (text: string, targetLang: string) =>

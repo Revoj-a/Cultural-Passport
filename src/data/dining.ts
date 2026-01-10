@@ -1,0 +1,16 @@
+export const DINING_ETIQUETTE_DATA: Record<string, string> = {
+  en: "In Wstern dining, keep your napkin on your lap. It is polite to wait until everyone is served before you begin eating.",
+  es: "En la cultura hispana, es común compartir platos y pasar la comida. Mantén las manos visibles y evita apoyar los codos en la mesa.",
+  ja: "日本では、食事中に音を立てることは失礼とされています。箸を使う際は、食べ物を指さないように注意しましょう。",
+  tl: "Sa Pilipinas, karaniwan ang paggamit ng kamay sa pagkain. Siguraduhing malinis ang iyong mga kamay bago kumain at iwasan ang pagdudurog ng pagkain.",
+  ko: "한국에서는 식사 중에 숟가락과 젓가락을 함께 사용하는 것이 일반적입니다. 밥그릇을 들고 먹는 것은 예의에 어긋납니다.",
+  fr: "En France, il est courant de tenere les mains visibles sur la table pendant le repas. Évitez de poser les coudes sur la table.",
+  de: "In Deutschland ist es üblich, Besteck richtig zu halten und nicht mit vollem Mund zu sprechen. Warten Sie, bis alle serviert sind, bevor Sie mit dem Essen beginnen.",
+  it: "In Italia, è consuetudine tenere le mani visibili sul tavolo durante il pasto. Evitare di appoggiare i gomiti sul tavolo.",
+  zh: "在中国，吃饭时发出声音被认为是不礼貌的。使用筷子时要注意不要指向别人。",
+  ar: "في الثقافة العربية، من المعتاد مشاركة الأطباق وتمرير الطعام. من اللباقة إبقاء اليدين مرئيتين وتجنب وضع المرفقين على الطاولة.",
+  ru: "В России принято держать руки видимыми на столе во время еды. Избегайте говорить с полным ртом.",
+  pt: "Em Portugal, é comum manter as mãos visíveis na mesa durante a refeição. Evite apoiar os cotovelos na mesa.",
+  vi: "Ở Việt Nam, việc dùng tay để ăn là phổ biến. Hãy đảm bảo tay bạn sạch sẽ trước khi ăn và tránh làm rơi thức ăn.",
+  th: "ในประเทศไทย การทานอาหารด้วยมือเป็นเรื่องปกติ ควรรักษาความสะอาดของมือก่อนรับประทานอาหารและหลีกเลี่ยงการทำอาหารหกเลอะเทอะ.",
+};

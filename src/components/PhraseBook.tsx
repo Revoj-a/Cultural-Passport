@@ -13,6 +13,7 @@ import AboutSection from "./AboutSection";
 import Translation from "./Translation";
 import { AnimatePresence } from "framer-motion";
 import QuickShowModal from "./QuickShowModal";
+import DiningModal from "./DiningModal";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
@@ -21,6 +22,13 @@ const PhraseBook = () => {
     translation: string;
     language: string;
     etiquette: string;
+  } | null>(null);
+
+  const [selectedDining, setSelectedDining] = useState<{
+    native: string;
+    translation: string;
+    language: string;
+    gesture: string;
   } | null>(null);
 
   const categories: Record<string, string> = {
@@ -103,6 +111,14 @@ const PhraseBook = () => {
                             etiquette: cultureNote,
                           })
                         }
+                        onShowDiningModal={(translatedText, gestureNote) =>
+                          setSelectedDining({
+                            native: translatedText,
+                            translation: languageQuery,
+                            language: lang.name,
+                            gesture: gestureNote,
+                          })
+                        }
                       />
                     ))}
                   </SimpleGrid>
@@ -115,6 +131,12 @@ const PhraseBook = () => {
                   phrase={selectedPhrase}
                   onClose={() => setSelectedPhrase(null)}
                 />
+              )}
+              {selectedDining && (
+                <DiningModal
+                  phrase={selectedDining}
+                  onClose={() => setSelectedDining(null)}
+                ></DiningModal>
               )}
             </AnimatePresence>
           </VStack>
