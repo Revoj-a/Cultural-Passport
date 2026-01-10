@@ -11,9 +11,17 @@ import {
 } from "@chakra-ui/react";
 import AboutSection from "./AboutSection";
 import Translation from "./Translation";
+import { AnimatePresence } from "framer-motion";
+import QuickShowModal from "./QuickShowModal";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
+  const [selectedPhrase, setSelectedPhrase] = useState<{
+    native: string;
+    translation: string;
+    language: string;
+    etiquette: string;
+  } | null>(null);
 
   const categories: Record<string, string> = {
     Greetings: "Hello, nice to meet you!",
@@ -87,12 +95,28 @@ const PhraseBook = () => {
                         phrase={languageQuery}
                         langCode={lang.code}
                         langName={lang.name}
+                        onShowModal={(translatedText, cultureNote) =>
+                          setSelectedPhrase({
+                            native: translatedText,
+                            translation: languageQuery,
+                            language: lang.name,
+                            etiquette: cultureNote,
+                          })
+                        }
                       />
                     ))}
                   </SimpleGrid>
                 </VStack>
               )}
             </Box>
+            <AnimatePresence>
+              {selectedPhrase && (
+                <QuickShowModal
+                  phrase={selectedPhrase}
+                  onClose={() => setSelectedPhrase(null)}
+                />
+              )}
+            </AnimatePresence>
           </VStack>
         </Box>
       </Box>

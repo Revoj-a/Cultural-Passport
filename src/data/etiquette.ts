@@ -1,0 +1,16 @@
+export const ETIQUETTE_DATA: Record<string, string> = {
+  tl: "In the Philippines, respectful gestures like a slight bow or nod are appreciated when greeting someone. Avoid pointing with your feet, as it's considered impolite.",
+  ja: "In Japan, bowing is a common greeting. A slight bow shows respect. Avoid direct eye contact for extended periods, as it can be seen as confrontational.",
+  es: "In Spanish-speaking countries, a firm handshake or a light kiss on the cheek is common when greeting. Maintain personal space and avoid overly casual behavior.",
+  fr: "In France, a light kiss on both cheeks is a common greeting among acquaintances. It's important to maintain a polite demeanor and avoid being overly familiar.",
+  de: "In Germany, a firm handshake is the standard greeting. It's important to maintain eye contact during the handshake as a sign of respect.",
+  it: "In Italy, greetings often involve a kiss on both cheeks among friends and family. A firm handshake is appropriate in formal settings.",
+  ko: "In Korea, bowing is a traditional greeting. A slight bow shows respect, especially to elders. Avoid using one hand when giving or receiving items.",
+  zh: "In China, a slight bow or nod is a common greeting. Handshakes are also acceptable, but avoid prolonged eye contact as it can be seen as disrespectful.",
+  ar: "In Arab cultures, greetings often involve a handshake or a light touch on the arm. It's important to show respect and avoid physical contact   with the opposite gender unless initiated by them.",
+  ru: "In Russia, a firm handshake is the standard greeting. It's customary to remove hats when greeting indoors and to maintain eye contact during the handshake.",
+  pt: "In Portuguese-speaking countries, a light kiss on both cheeks is common among friends. A firm handshake is appropriate in formal settings.",
+  vi: "In Vietnam, a slight bow or nod is a common greeting. Handshakes are also acceptable, but avoid prolonged eye contact as it can be seen as disrespectful.",
+  th: "In Thailand, the traditional greeting is the 'wai,' which involves placing your palms together in a prayer-like gesture and bowing slightly. Avoid touching someone's head, as it's considered the most sacred part of the body.",
+  en: "In English-speaking countries, a firm handshake is the standard greeting. It's important to maintain eye contact during the handshake as a sign of respect.",
+};
