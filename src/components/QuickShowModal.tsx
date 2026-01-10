@@ -82,7 +82,7 @@ const QuickShowModal = ({ phrase, onClose }: Props) => {
             </Text>
             <Heading
               color="gold"
-              fontSize="6xl"
+              fontSize={{ base: "3xl", md: "5xl" }}
               fontWeight="700"
               lineHeight="shorter"
               wordBreak="break-word"
@@ -101,7 +101,7 @@ const QuickShowModal = ({ phrase, onClose }: Props) => {
             borderColor="whiteAlpha.200"
             textAlign="left"
           >
-            <HStack mb={2} color="gray.500">
+            <HStack mb={2} color="orange.200">
               <FaInfoCircle size="14px" />
               <Text fontSize="xs" fontWeight="bold" textTransform="uppercase">
                 Body Language & Etiquette

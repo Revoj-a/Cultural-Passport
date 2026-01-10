@@ -71,7 +71,12 @@ const DiningModal = ({ phrase, onClose }: Props) => {
             <Text color="orange.200" fontSize="xs" fontWeight="bold">
               DINING IN: {phrase.language}
             </Text>
-            <Heading color="orange.100" fontSize="5xl" my={2}>
+            <Heading
+              color="gold"
+              fontSize={{ base: "3xl", md: "5xl" }}
+              my={2}
+              wordBreak="break-word"
+            >
               {phrase.native}
             </Heading>
             <Text fontSize="xl" fontStyle="italic">
