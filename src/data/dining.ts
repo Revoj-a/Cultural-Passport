@@ -1,5 +1,5 @@
 export const DINING_ETIQUETTE_DATA: Record<string, string> = {
-  en: "In Wstern dining, keep your napkin on your lap. It is polite to wait until everyone is served before you begin eating.",
+  en: "In Western dining, keep your napkin on your lap. It is polite to wait until everyone is served before you begin eating.",
   es: "En la cultura hispana, es común compartir platos y pasar la comida. Mantén las manos visibles y evita apoyar los codos en la mesa.",
   ja: "日本では、食事中に音を立てることは失礼とされています。箸を使う際は、食べ物を指さないように注意しましょう。",
   tl: "Sa Pilipinas, karaniwan ang paggamit ng kamay sa pagkain. Siguraduhing malinis ang iyong mga kamay bago kumain at iwasan ang pagdudurog ng pagkain.",
