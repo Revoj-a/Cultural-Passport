@@ -107,7 +107,12 @@ const QuickShowModal = ({ phrase, onClose }: Props) => {
                 Body Language & Etiquette
               </Text>
             </HStack>
-            <Text fontSize="sm" color="gray.300" lineHeight="tall">
+            <Text
+              fontSize="sm"
+              color="gray.300"
+              lineHeight="tall"
+              textAlign="justify"
+            >
               {phrase.etiquette}
             </Text>
           </Box>

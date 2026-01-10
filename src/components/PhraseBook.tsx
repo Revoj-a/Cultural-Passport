@@ -136,7 +136,7 @@ const PhraseBook = () => {
                 <DiningModal
                   phrase={selectedDining}
                   onClose={() => setSelectedDining(null)}
-                ></DiningModal>
+                />
               )}
             </AnimatePresence>
           </VStack>
