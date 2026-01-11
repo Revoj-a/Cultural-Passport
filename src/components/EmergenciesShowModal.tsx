@@ -39,18 +39,19 @@ const EmergenciesShowModal = ({ phrase, onClose }: Props) => {
     >
       <MotionBox
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
-        initial={{ scale: 0.8, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
+        initial={{ x: -10, opacity: 0 }}
+        animate={{ x: [0, -10, 10, -10, 0], opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0, y: 20 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        transition={{ duration: 0.5, times: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
         w={{ base: "95%", md: "500px" }}
         maxH="90vh"
         overflowY="auto"
         p={{ base: 6, md: 10 }}
         borderRadius="3xl"
-        bg="rgba(45, 45, 45, 0.9)"
+        bg="rgba(66, 0, 0. 0.95)"
         backdropFilter="blur(20px)"
-        border="1px solid rgba(255, 255, 255, 0.1)"
+        border="2px solid"
+        borderColor="red.500"
         boxShadow="0 25px 50px -12px rgba(0, 0, 0, 0.7)"
         textAlign="center"
         position="relative"
