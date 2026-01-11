@@ -13,7 +13,8 @@ import AboutSection from "./AboutSection";
 import Translation from "./Translation";
 import { AnimatePresence } from "framer-motion";
 import QuickShowModal from "./QuickShowModal";
-import DiningModal from "./DiningModal";
+import DiningModal from "./DiningShowModal";
+import EmergenciesShowModal from "./EmergenciesShowModal";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
@@ -29,6 +30,13 @@ const PhraseBook = () => {
     translation: string;
     language: string;
     gesture: string;
+  } | null>(null);
+
+  const [selectedEmergency, setSelectedEmergency] = useState<{
+    native: string;
+    translation: string;
+    language: string;
+    emergencyInfo: string;
   } | null>(null);
 
   const categories: Record<string, string> = {
@@ -119,6 +127,17 @@ const PhraseBook = () => {
                             gesture: gestureNote,
                           })
                         }
+                        onShowEmergencyModal={(
+                          translatedText,
+                          emergencyInfo
+                        ) => {
+                          setSelectedEmergency({
+                            native: translatedText,
+                            translation: languageQuery,
+                            language: lang.name,
+                            emergencyInfo: emergencyInfo,
+                          });
+                        }}
                       />
                     ))}
                   </SimpleGrid>
@@ -136,6 +155,12 @@ const PhraseBook = () => {
                 <DiningModal
                   phrase={selectedDining}
                   onClose={() => setSelectedDining(null)}
+                />
+              )}
+              {selectedEmergency && (
+                <EmergenciesShowModal
+                  phrase={selectedEmergency}
+                  onClose={() => setSelectedEmergency(null)}
                 />
               )}
             </AnimatePresence>

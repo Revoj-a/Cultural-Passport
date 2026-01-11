@@ -1,0 +1,16 @@
+export const EMERGENCY_DATA: Record<string, string> = {
+  en: "Emergency: 911. Speak clearly and state your location immediately.",
+  es: "Emergency: 112. In many Spanish-speaking countries, look for the 'Policia Local' or 'Guardia Civil'.",
+  ja: "Emergency: 119. (Fire/Ambulance) or 110 (Police). Most Japanese police boxes (Koban) are located near train stations.",
+  tl: "Emergency: 911. You can also ask for the 'Barangay Hall' for immediate local assistance in neighborhoods.",
+  fr: "Emergency: 112. The 'SAMU' is the medical emergency service. Pharmacies with a green neon sign are often 24/7.",
+  ko: "Emergency: 119. (Medial/Fire) or 112 (Police). Look for the 'Safety Houses' in convenience stores if you feel unsafe.",
+  de: "Emergency: 112. The 'Notarzt' is the emergency doctor service. Look for 'Apotheke' signs for pharmacies.",
+  it: "Emergency: 112. The 'Carabinieri' are a national police force. Pharmacies with a green cross sign are often open late.",
+  zh: "Emergency: 120 (Medical) or 110 (Police). Many police stations have English-speaking officers available.",
+  vi: "Emergency: 115. Look for 'Trạm Y Tế' (Health Stations) in rural areas for medical assistance.",
+  th: "Emergency: 1669 (Medical) or 191 (Police). Many hospitals have international clinics for foreigners.",
+  ru: "Emergency: 112. The 'Скорая помощь' (Skoraya Pomoshch) is the ambulance service. Pharmacies are marked with a green cross.",
+  ar: "Emergency: 999 or 112. In many Arab countries, look for the 'شرطة' (Police) or 'مستشفى' (Hospital) signs for assistance.",
+  pt: "Emergency: 112. The 'Polícia' is the police service. Pharmacies with a green cross sign are often open late.",
+};

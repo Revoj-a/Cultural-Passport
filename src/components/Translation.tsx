@@ -4,6 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import type React from "react";
 import { ETIQUETTE_DATA } from "../data/etiquette";
 import { DINING_ETIQUETTE_DATA } from "../data/dining";
+import { EMERGENCY_DATA } from "../data/emergency";
 
 interface Props {
   phrase: string;
@@ -11,6 +12,7 @@ interface Props {
   langName: string;
   onShowModal: (translatedText: string, cultureNote: string) => void;
   onShowDiningModal: (translatedText: string, gestureNote: string) => void;
+  onShowEmergencyModal: (translatedText: string, emergencyInfo: string) => void;
 }
 
 const Translation = ({
@@ -19,6 +21,7 @@ const Translation = ({
   langName,
   onShowModal,
   onShowDiningModal,
+  onShowEmergencyModal,
 }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
 
@@ -53,14 +56,35 @@ const Translation = ({
   const handleClick = () => {
     if (!data?.translatedText) return;
 
-    const isDining =
-      phrase.toLowerCase().includes("eat") ||
-      phrase.toLowerCase().includes("food") ||
-      phrase.toLowerCase().includes("restaurant");
+    const phraseLower = phrase.toLowerCase();
 
-    if (isDining) {
-      const gestureTip = DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!";
-      onShowDiningModal(data.translatedText, gestureTip);
+    const diningKeywords = [
+      "eat",
+      "food",
+      "restaurant",
+      "bill",
+      "menu",
+      "water",
+    ];
+
+    const emergencyKeywords = [
+      "help",
+      "hospital",
+      "police",
+      "doctor",
+      "emergency",
+      "hurt",
+      "accident",
+      "danger",
+    ];
+
+    if (diningKeywords.some((key) => phraseLower.includes(key))) {
+      const gestureNote = DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!";
+      onShowDiningModal(data.translatedText, gestureNote);
+    } else if (emergencyKeywords.some((key) => phraseLower.includes(key))) {
+      const emergencyInfo =
+        EMERGENCY_DATA[langCode] || "Contact local authorities immediately.";
+      onShowEmergencyModal(data.translatedText, emergencyInfo);
     } else {
       const etiquette =
         ETIQUETTE_DATA[langCode] || "Be respectful of local customs.";
