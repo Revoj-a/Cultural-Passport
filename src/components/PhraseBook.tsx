@@ -16,6 +16,7 @@ import QuickShowModal from "./QuickShowModal";
 import DiningModal from "./DiningShowModal";
 import EmergenciesShowModal from "./EmergenciesShowModal";
 import NavigationShowModal from "./NavigationShowModal";
+import FavoritesShowModal from "./FavoritesShowModal";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
@@ -45,6 +46,13 @@ const PhraseBook = () => {
     translation: string;
     language: string;
     navigationInfo: string;
+  } | null>(null);
+
+  const [selectedFavorites, setSelectedFavorites] = useState<{
+    native: string;
+    translation: string;
+    language: string;
+    favoriteInfo: string;
   } | null>(null);
 
   const categories: Record<string, string> = {
@@ -93,6 +101,7 @@ const PhraseBook = () => {
                     setSelectedDining(null);
                     setSelectedEmergency(null);
                     setSelectedNavigation(null);
+                    setSelectedFavorites(null);
                     setLanguageQuery(categories[cat]);
                   }}
                   size="sm"
@@ -160,6 +169,14 @@ const PhraseBook = () => {
                             navigationInfo: navigationInfo,
                           })
                         }
+                        onShowFavoritesModal={(translatedText, favoriteInfo) =>
+                          setSelectedFavorites({
+                            native: translatedText,
+                            translation: languageQuery,
+                            language: lang.name,
+                            favoriteInfo: favoriteInfo,
+                          })
+                        }
                       />
                     ))}
                   </SimpleGrid>
@@ -189,6 +206,12 @@ const PhraseBook = () => {
                 <NavigationShowModal
                   phrase={selectedNavigation}
                   onClose={() => setSelectedNavigation(null)}
+                />
+              )}
+              {selectedFavorites && (
+                <FavoritesShowModal
+                  phrase={selectedFavorites}
+                  onClose={() => setSelectedFavorites(null)}
                 />
               )}
             </AnimatePresence>

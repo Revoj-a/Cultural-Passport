@@ -6,6 +6,7 @@ import { ETIQUETTE_DATA } from "../data/etiquette";
 import { DINING_ETIQUETTE_DATA } from "../data/dining";
 import { EMERGENCY_DATA } from "../data/emergency";
 import { NAVIGATION_DATA } from "../data/navigation";
+import { FAVORITES_DATA } from "../data/favorites";
 
 interface Props {
   phrase: string;
@@ -18,6 +19,7 @@ interface Props {
     translatedText: string,
     navigationInfo: string
   ) => void;
+  onShowFavoritesModal: (translatedText: string, favoriteInfo: string) => void;
 }
 
 const Translation = ({
@@ -28,6 +30,7 @@ const Translation = ({
   onShowDiningModal,
   onShowEmergencyModal,
   onShowNavigationModal,
+  onShowFavoritesModal,
 }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
 
@@ -105,6 +108,19 @@ const Translation = ({
       "center",
     ];
 
+    const favoriteKeywords = [
+      "favorite",
+      "place",
+      "best",
+      "love",
+      "like",
+      "awesome",
+      "amazing",
+      "good",
+      "recommend",
+      "beautiful",
+    ];
+
     if (diningKeywords.some((key) => phraseLower.includes(key))) {
       const gestureNote = DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!";
       onShowDiningModal(data.translatedText, gestureNote);
@@ -116,6 +132,9 @@ const Translation = ({
       const navigationInfo =
         NAVIGATION_DATA[langCode] || "Ask for directions politely.";
       onShowNavigationModal(data.translatedText, navigationInfo);
+    } else if (favoriteKeywords.some((key) => phraseLower.includes(key))) {
+      const favoriteInfo = FAVORITES_DATA[langCode] || "It's a local favorite!";
+      onShowFavoritesModal(data.translatedText, favoriteInfo);
     } else {
       const etiquette =
         ETIQUETTE_DATA[langCode] || "Be respectful of local customs.";
