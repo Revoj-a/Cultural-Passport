@@ -5,6 +5,7 @@ import type React from "react";
 import { ETIQUETTE_DATA } from "../data/etiquette";
 import { DINING_ETIQUETTE_DATA } from "../data/dining";
 import { EMERGENCY_DATA } from "../data/emergency";
+import { NAVIGATION_DATA } from "../data/navigation";
 
 interface Props {
   phrase: string;
@@ -13,6 +14,10 @@ interface Props {
   onShowModal: (translatedText: string, cultureNote: string) => void;
   onShowDiningModal: (translatedText: string, gestureNote: string) => void;
   onShowEmergencyModal: (translatedText: string, emergencyInfo: string) => void;
+  onShowNavigationModal: (
+    translatedText: string,
+    navigationInfo: string
+  ) => void;
 }
 
 const Translation = ({
@@ -22,6 +27,7 @@ const Translation = ({
   onShowModal,
   onShowDiningModal,
   onShowEmergencyModal,
+  onShowNavigationModal,
 }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
 
@@ -78,6 +84,27 @@ const Translation = ({
       "danger",
     ];
 
+    const navigationKeywords = [
+      "where",
+      "street",
+      "train",
+      "bus",
+      "station",
+      "airport",
+      "left",
+      "right",
+      "straight",
+      "map",
+      "hotel",
+      "far",
+      "address",
+      "get",
+      "direction",
+      "way",
+      "location",
+      "center",
+    ];
+
     if (diningKeywords.some((key) => phraseLower.includes(key))) {
       const gestureNote = DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!";
       onShowDiningModal(data.translatedText, gestureNote);
@@ -85,6 +112,10 @@ const Translation = ({
       const emergencyInfo =
         EMERGENCY_DATA[langCode] || "Contact local authorities immediately.";
       onShowEmergencyModal(data.translatedText, emergencyInfo);
+    } else if (navigationKeywords.some((key) => phraseLower.includes(key))) {
+      const navigationInfo =
+        NAVIGATION_DATA[langCode] || "Ask for directions politely.";
+      onShowNavigationModal(data.translatedText, navigationInfo);
     } else {
       const etiquette =
         ETIQUETTE_DATA[langCode] || "Be respectful of local customs.";

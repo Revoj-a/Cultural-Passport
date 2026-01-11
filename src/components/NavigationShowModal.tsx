@@ -17,7 +17,7 @@ interface NavigationPhrase {
   native: string;
   translation: string;
   language: string;
-  navigation: string;
+  navigationInfo: string;
 }
 
 interface Props {
@@ -97,7 +97,7 @@ const NavigationShowModal = ({ phrase, onClose }: Props) => {
               </Text>
             </HStack>
             <Text fontSize="sm" lineHeight="tall" textAlign="justify">
-              {phrase.navigation}
+              {phrase.navigationInfo}
             </Text>
           </Box>
         </VStack>

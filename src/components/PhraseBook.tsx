@@ -15,6 +15,7 @@ import { AnimatePresence } from "framer-motion";
 import QuickShowModal from "./QuickShowModal";
 import DiningModal from "./DiningShowModal";
 import EmergenciesShowModal from "./EmergenciesShowModal";
+import NavigationShowModal from "./NavigationShowModal";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
@@ -37,6 +38,13 @@ const PhraseBook = () => {
     translation: string;
     language: string;
     emergencyInfo: string;
+  } | null>(null);
+
+  const [selectedNavigation, setSelectedNavigation] = useState<{
+    native: string;
+    translation: string;
+    language: string;
+    navigationInfo: string;
   } | null>(null);
 
   const categories: Record<string, string> = {
@@ -80,7 +88,13 @@ const PhraseBook = () => {
               {Object.keys(categories).map((cat) => (
                 <Button
                   key={cat}
-                  onClick={() => setLanguageQuery(categories[cat])}
+                  onClick={() => {
+                    setSelectedPhrase(null);
+                    setSelectedDining(null);
+                    setSelectedEmergency(null);
+                    setSelectedNavigation(null);
+                    setLanguageQuery(categories[cat]);
+                  }}
                   size="sm"
                   variant="outline"
                   bg={
@@ -127,17 +141,25 @@ const PhraseBook = () => {
                             gesture: gestureNote,
                           })
                         }
-                        onShowEmergencyModal={(
-                          translatedText,
-                          emergencyInfo
-                        ) => {
+                        onShowEmergencyModal={(translatedText, emergencyInfo) =>
                           setSelectedEmergency({
                             native: translatedText,
                             translation: languageQuery,
                             language: lang.name,
                             emergencyInfo: emergencyInfo,
-                          });
-                        }}
+                          })
+                        }
+                        onShowNavigationModal={(
+                          translatedText,
+                          navigationInfo
+                        ) =>
+                          setSelectedNavigation({
+                            native: translatedText,
+                            translation: languageQuery,
+                            language: lang.name,
+                            navigationInfo: navigationInfo,
+                          })
+                        }
                       />
                     ))}
                   </SimpleGrid>
@@ -161,6 +183,12 @@ const PhraseBook = () => {
                 <EmergenciesShowModal
                   phrase={selectedEmergency}
                   onClose={() => setSelectedEmergency(null)}
+                />
+              )}
+              {selectedNavigation && (
+                <NavigationShowModal
+                  phrase={selectedNavigation}
+                  onClose={() => setSelectedNavigation(null)}
                 />
               )}
             </AnimatePresence>
