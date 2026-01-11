@@ -1,0 +1,16 @@
+export const NAVIGATION_DATA: Record<string, string> = {
+  en: "In many English-speaking cities, street numbers follow a logical odd/even pattern on opposite sides of the road.",
+  es: "In many Spanish cities, 'Plazas' are the main landmarks. Always ask for the nearest 'Metro' or 'Parada de autobús' (bus stop) for public transport directions.",
+  ja: "Japan uses a unique addressing system based on blocks, not street names. Looking for a 'Koban' (Police Box) is the best way to get directions.",
+  tl: "In the Philippines, jeepneys and tricycles are common modes of transport. Asking for 'Saan ang pinakamalapit na jeepney terminal?' (Where is the nearest jeepney terminal?) can be helpful.",
+  ko: "Address systems in Korea are based on building numbers. Use 'KakaoMaps' or 'Naver Maps' as Google Maps is often less detailed there.",
+  fr: "'Place' and 'Rue' are common terms in addresses. Asking for the nearest 'Métro' station can help you navigate cities like Paris.",
+  it: "In Italy, piazzas (squares) are key landmarks. Asking for 'Dov'è la stazione della metropolitana più vicina?' (Where is the nearest metro station?) is useful for navigation. Many historic centers are 'ZTL' (Zona Traffico Limitato) areas where driving is restricted. Look for white and blue signs to avoid fines.",
+  de: "German cities prioritize punctuality; 'U-Bahn' and 'S-Bahn' schedules are precise. Always remember to validate your ticket at the platform stamps before boarding.",
+  zh: "In China, 'Gaode Maps' or 'Baidu Maps' are essential. Large cities often have multi-level intersections, so pay close attention to 'Exit' numbers in subway stations.",
+  ar: "In many Middle Eastern cities, navigation often relies on proximity to major landmarks like mosques or malls rather than strict street numbering.",
+  th: "Motorbike taxis (identifiable by orange vests) are the fastest way through traffic. Always agree on the price before starting.",
+  pt: "In Lisbon, the 'Elétrico' (trams) are iconic but crowded. Look for the 'Calçada Portuguesa' (mosaic pavements) which can be slippery when wet.",
+  ru: "The Moscow Metro is famous for its depth and art. Use the station's color-coded lines and look for 'Vykod v gorod' (Exit to the city) signs.",
+  vi: "In Vietnam, 'xe ôm' (motorbike taxis) are a common way to get around. Always negotiate the fare before starting your ride.",
+};
