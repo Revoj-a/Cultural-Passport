@@ -1,0 +1,16 @@
+export const FAVORITES_DATA: Record<string, string> = {
+  en: "Once you find a favorite spot, check online community boards or ask the staff for 'off-menu' recommendations often reserved for locals.",
+  es: "To learn more about a favorite local gem, ask the staff about the history of their signature dish; they often share stories you won't find in guidebooks.",
+  ja: "Becoming a '常連' (Jōren/Regular) unlocks a deeper experience; staff may begin sharing news about seasonal specialties or exclusive local events.",
+  tl: "Engage with the hosts of your favorite 'Salu-Salo' (gathering) spots; they are often the best sources for finding hidden gems in the neighborhood.",
+  fr: "Returning to a favorite café allows you to observe the local rhythm; greet the 'patron' (owner) to get insider tips on the best nearby boutiques.",
+  ko: "Building 'Jeong' (affection) through repeat visits often leads to 'service' (complimentary treats) and authentic local advice from the business owner.",
+  it: "Visit your favorite 'Bar' at the same time each morning; listening to the local banter what's happening in the community.",
+  th: "After praising the food with 'Aroi mak!', ask the host for their favorite nearby market to discover where the locals actaully shop.",
+  vi: "When a 'Quán' (local eatery) becomes your favorite, ask the owner for their 'món tủ' (specialty dish) to discover flavors not listed on the standard tourist menu.",
+  zh: "Frequent your favorite tea house or stall to build 'Guanxi' (connections); the staff will soon start pointing you toward the best local deals hidden sights.",
+  de: "Becoming a 'Stammgast' (regular) at a local Gasthof allows you to tap into the 'Stammtisch' culture, where locals share the most honest advice about the area.",
+  pt: "In a favorite neighborhood 'tasca', ask the staff about the origin of their wine; it often leads to personal stories and invitations to local community festivals.",
+  ar: "Showing genuine appreciation at a favorite spot often leads to 'Karam' (generosity), where hosts share family recipes or point you to secret landmarks.",
+  ru: "At you favorite local spot, a simple conversation with the 'khozyain' (owner) can reveal 'vnutrenniy' (insider) tips on the best times to visit popular sites without the crowds.",
+};
