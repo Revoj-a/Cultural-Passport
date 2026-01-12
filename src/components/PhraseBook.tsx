@@ -47,7 +47,7 @@ const PhraseBook = () => {
     { code: "ru", name: "Russian" },
     { code: "pt", name: "Portuguese" },
     { code: "vi", name: "Vietnamese" },
-    { code: "th", name: "Thailand" },
+    { code: "th", name: "Thai" },
   ];
 
   return (
@@ -108,35 +108,39 @@ const PhraseBook = () => {
               )}
             </Box>
             <AnimatePresence>
-              {activeSelection?.type === "general" && (
-                <QuickShowModal
-                  phrase={activeSelection}
-                  onClose={() => setActiveSelection(null)}
-                />
-              )}
-              {activeSelection?.type === "dining" && (
-                <DiningModal
-                  phrase={activeSelection}
-                  onClose={() => setActiveSelection(null)}
-                />
-              )}
-              {activeSelection?.type === "emergency" && (
-                <EmergenciesShowModal
-                  phrase={activeSelection}
-                  onClose={() => setActiveSelection(null)}
-                />
-              )}
-              {activeSelection?.type === "navigation" && (
-                <NavigationShowModal
-                  phrase={activeSelection}
-                  onClose={() => setActiveSelection(null)}
-                />
-              )}
-              {activeSelection?.type === "favorites" && (
-                <FavoritesShowModal
-                  phrase={activeSelection}
-                  onClose={() => setActiveSelection(null)}
-                />
+              {activeSelection && (
+                <>
+                  {activeSelection.type === "general" && (
+                    <QuickShowModal
+                      phrase={activeSelection}
+                      onClose={() => setActiveSelection(null)}
+                    />
+                  )}
+                  {activeSelection.type === "dining" && (
+                    <DiningModal
+                      phrase={activeSelection}
+                      onClose={() => setActiveSelection(null)}
+                    />
+                  )}
+                  {activeSelection.type === "emergency" && (
+                    <EmergenciesShowModal
+                      phrase={activeSelection}
+                      onClose={() => setActiveSelection(null)}
+                    />
+                  )}
+                  {activeSelection.type === "navigation" && (
+                    <NavigationShowModal
+                      phrase={activeSelection}
+                      onClose={() => setActiveSelection(null)}
+                    />
+                  )}
+                  {activeSelection.type === "favorites" && (
+                    <FavoritesShowModal
+                      phrase={activeSelection}
+                      onClose={() => setActiveSelection(null)}
+                    />
+                  )}
+                </>
               )}
             </AnimatePresence>
           </VStack>
