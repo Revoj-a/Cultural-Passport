@@ -9,19 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaMapMarkedAlt, FaTimes } from "react-icons/fa";
+import { type ActiveSelection } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface NavigationPhrase {
-  native: string;
-  translation: string;
-  language: string;
-  navigationInfo: string;
-}
-
 interface Props {
-  phrase: NavigationPhrase;
+  phrase: ActiveSelection;
   onClose: () => void;
 }
 
@@ -97,7 +91,7 @@ const NavigationShowModal = ({ phrase, onClose }: Props) => {
               </Text>
             </HStack>
             <Text fontSize="sm" lineHeight="tall" textAlign="justify">
-              {phrase.navigationInfo}
+              {phrase.info}
             </Text>
           </Box>
         </VStack>
