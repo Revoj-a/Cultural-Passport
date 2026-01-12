@@ -110,43 +110,31 @@ const PhraseBook = () => {
             <AnimatePresence>
               {activeSelection?.type === "general" && (
                 <QuickShowModal
-                  phrase={{
-                    ...activeSelection,
-                    etiquette: activeSelection.info,
-                  }}
+                  phrase={activeSelection}
                   onClose={() => setActiveSelection(null)}
                 />
               )}
               {activeSelection?.type === "dining" && (
                 <DiningModal
-                  phrase={{ ...activeSelection, gesture: activeSelection.info }}
+                  phrase={activeSelection}
                   onClose={() => setActiveSelection(null)}
                 />
               )}
               {activeSelection?.type === "emergency" && (
                 <EmergenciesShowModal
-                  phrase={{
-                    ...activeSelection,
-                    emergencyInfo: activeSelection.info,
-                  }}
+                  phrase={activeSelection}
                   onClose={() => setActiveSelection(null)}
                 />
               )}
               {activeSelection?.type === "navigation" && (
                 <NavigationShowModal
-                  phrase={{
-                    ...activeSelection,
-                    navigationInfo: activeSelection.info,
-                  }}
+                  phrase={activeSelection}
                   onClose={() => setActiveSelection(null)}
                 />
               )}
               {activeSelection?.type === "favorites" && (
                 <FavoritesShowModal
-                  phrase={{
-                    ...activeSelection,
-                    favoriteInfo: activeSelection.info,
-                  }}
+                  phrase={activeSelection}
                   onClose={() => setActiveSelection(null)}
                 />
               )}
