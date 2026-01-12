@@ -1,6 +1,7 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import useFlags from "../hooks/useFlags";
 import { keyframes } from "@emotion/react";
+import FlagsSkeleton from "./FlagsSkeleton";
 
 const scroll = keyframes` 
    0% { transform: translateX(0); }
@@ -8,9 +9,12 @@ const scroll = keyframes`
 `;
 
 const Flags = () => {
-  const { data, error } = useFlags();
+  const { data, error, isLoading } = useFlags();
 
   if (error) return <Text color="red">{error.message}</Text>;
+
+  const SKELETON_COUNT = 10;
+  const skeletons = Array.from({ length: SKELETON_COUNT }, (_, i) => i);
 
   return (
     <Box
@@ -34,25 +38,28 @@ const Flags = () => {
         display="flex"
         position="absolute"
         width="max-content"
-        animation={`${scroll} 40s linear infinite`}
+        animation={!isLoading ? `${scroll} 40s linear infinite` : "none"}
         willChange="transform"
         alignItems="center"
         top="0"
         height="100%"
       >
-        {data?.photos?.map((flag, index) => (
-          <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
-            <Image
-              objectFit="cover"
-              src={flag.src?.medium}
-              w="150px"
-              h="100px"
-              borderRadius="4px"
-              border="2px solid white"
-              boxShadow="dark-lg"
-            />
-          </Box>
-        ))}
+        {isLoading &&
+          skeletons.map((skeleton) => <FlagsSkeleton key={skeleton} />)}
+        {!isLoading &&
+          data?.photos?.map((flag, index) => (
+            <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
+              <Image
+                objectFit="cover"
+                src={flag.src?.medium}
+                w="150px"
+                h="100px"
+                borderRadius="4px"
+                border="2px solid white"
+                boxShadow="dark-lg"
+              />
+            </Box>
+          ))}
         {data?.photos?.map((flag, index) => (
           <Box key={`${flag.id}-${index}`} flexShrink={0} px={2}>
             <Image
