@@ -9,19 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaTimes, FaUtensils } from "react-icons/fa";
+import type { ActiveSelection } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface DiningPhrase {
-  native: string;
-  translation: string;
-  language: string;
-  gesture: string;
-}
-
 interface Props {
-  phrase: DiningPhrase;
+  phrase: ActiveSelection;
   onClose: () => void;
 }
 
@@ -97,7 +91,7 @@ const DiningModal = ({ phrase, onClose }: Props) => {
               </Text>
             </HStack>
             <Text fontSize="sm" lineHeight="tall" textAlign="justify">
-              {phrase.gesture}
+              {phrase.info}
             </Text>
           </Box>
         </VStack>
