@@ -10,11 +10,15 @@ const Tradition = () => {
 
   if (error) return <Text color="red">{error.message}</Text>;
   return (
-    <Box px={{ base: 2, lg: 6 }} h="100%">
+    <Box px={{ base: 4, lg: 8 }} py={4}>
       <Heading size="lg" mt={5} mx={2} mb={4} color="gold" letterSpacing="2px">
         Traditions
       </Heading>
-      <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={2} m={1} p={1}>
+      <SimpleGrid
+        columns={{ base: 2, md: 3, lg: 5 }}
+        spacingX={4}
+        justifyItems="center"
+      >
         {isLoading &&
           skeletons.map((skeleton) => <ImageSkeleton key={skeleton} />)}
         {!isLoading &&
