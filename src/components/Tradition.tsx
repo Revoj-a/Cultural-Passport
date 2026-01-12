@@ -5,9 +5,8 @@ import ImageSkeleton from "./ImageSkeleton";
 const Tradition = () => {
   const { data, error, isLoading } = useTraditions();
 
-  const skeletons = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+  const SKELETON_COUNT = 20;
+  const skeletons = Array.from({ length: SKELETON_COUNT }, (_, i) => i);
 
   if (error) return <Text color="red">{error.message}</Text>;
   return (
