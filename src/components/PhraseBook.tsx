@@ -17,43 +17,13 @@ import DiningModal from "./DiningShowModal";
 import EmergenciesShowModal from "./EmergenciesShowModal";
 import NavigationShowModal from "./NavigationShowModal";
 import FavoritesShowModal from "./FavoritesShowModal";
+import { type ActiveSelection } from "../entities/ActiveSelection";
 
 const PhraseBook = () => {
   const [languageQuery, setLanguageQuery] = useState("");
-  const [selectedPhrase, setSelectedPhrase] = useState<{
-    native: string;
-    translation: string;
-    language: string;
-    etiquette: string;
-  } | null>(null);
 
-  const [selectedDining, setSelectedDining] = useState<{
-    native: string;
-    translation: string;
-    language: string;
-    gesture: string;
-  } | null>(null);
-
-  const [selectedEmergency, setSelectedEmergency] = useState<{
-    native: string;
-    translation: string;
-    language: string;
-    emergencyInfo: string;
-  } | null>(null);
-
-  const [selectedNavigation, setSelectedNavigation] = useState<{
-    native: string;
-    translation: string;
-    language: string;
-    navigationInfo: string;
-  } | null>(null);
-
-  const [selectedFavorites, setSelectedFavorites] = useState<{
-    native: string;
-    translation: string;
-    language: string;
-    favoriteInfo: string;
-  } | null>(null);
+  const [activeSelection, setActiveSelection] =
+    useState<ActiveSelection | null>(null);
 
   const categories: Record<string, string> = {
     Greetings: "Hello, nice to meet you!",
@@ -97,11 +67,7 @@ const PhraseBook = () => {
                 <Button
                   key={cat}
                   onClick={() => {
-                    setSelectedPhrase(null);
-                    setSelectedDining(null);
-                    setSelectedEmergency(null);
-                    setSelectedNavigation(null);
-                    setSelectedFavorites(null);
+                    setActiveSelection(null);
                     setLanguageQuery(categories[cat]);
                   }}
                   size="sm"
@@ -134,49 +100,7 @@ const PhraseBook = () => {
                         phrase={languageQuery}
                         langCode={lang.code}
                         langName={lang.name}
-                        onShowModal={(translatedText, cultureNote) =>
-                          setSelectedPhrase({
-                            native: translatedText,
-                            translation: languageQuery,
-                            language: lang.name,
-                            etiquette: cultureNote,
-                          })
-                        }
-                        onShowDiningModal={(translatedText, gestureNote) =>
-                          setSelectedDining({
-                            native: translatedText,
-                            translation: languageQuery,
-                            language: lang.name,
-                            gesture: gestureNote,
-                          })
-                        }
-                        onShowEmergencyModal={(translatedText, emergencyInfo) =>
-                          setSelectedEmergency({
-                            native: translatedText,
-                            translation: languageQuery,
-                            language: lang.name,
-                            emergencyInfo: emergencyInfo,
-                          })
-                        }
-                        onShowNavigationModal={(
-                          translatedText,
-                          navigationInfo
-                        ) =>
-                          setSelectedNavigation({
-                            native: translatedText,
-                            translation: languageQuery,
-                            language: lang.name,
-                            navigationInfo: navigationInfo,
-                          })
-                        }
-                        onShowFavoritesModal={(translatedText, favoriteInfo) =>
-                          setSelectedFavorites({
-                            native: translatedText,
-                            translation: languageQuery,
-                            language: lang.name,
-                            favoriteInfo: favoriteInfo,
-                          })
-                        }
+                        onSelect={(selection) => setActiveSelection(selection)}
                       />
                     ))}
                   </SimpleGrid>
@@ -184,34 +108,46 @@ const PhraseBook = () => {
               )}
             </Box>
             <AnimatePresence>
-              {selectedPhrase && (
+              {activeSelection?.type === "general" && (
                 <QuickShowModal
-                  phrase={selectedPhrase}
-                  onClose={() => setSelectedPhrase(null)}
+                  phrase={{
+                    ...activeSelection,
+                    etiquette: activeSelection.info,
+                  }}
+                  onClose={() => setActiveSelection(null)}
                 />
               )}
-              {selectedDining && (
+              {activeSelection?.type === "dining" && (
                 <DiningModal
-                  phrase={selectedDining}
-                  onClose={() => setSelectedDining(null)}
+                  phrase={{ ...activeSelection, gesture: activeSelection.info }}
+                  onClose={() => setActiveSelection(null)}
                 />
               )}
-              {selectedEmergency && (
+              {activeSelection?.type === "emergency" && (
                 <EmergenciesShowModal
-                  phrase={selectedEmergency}
-                  onClose={() => setSelectedEmergency(null)}
+                  phrase={{
+                    ...activeSelection,
+                    emergencyInfo: activeSelection.info,
+                  }}
+                  onClose={() => setActiveSelection(null)}
                 />
               )}
-              {selectedNavigation && (
+              {activeSelection?.type === "navigation" && (
                 <NavigationShowModal
-                  phrase={selectedNavigation}
-                  onClose={() => setSelectedNavigation(null)}
+                  phrase={{
+                    ...activeSelection,
+                    navigationInfo: activeSelection.info,
+                  }}
+                  onClose={() => setActiveSelection(null)}
                 />
               )}
-              {selectedFavorites && (
+              {activeSelection?.type === "favorites" && (
                 <FavoritesShowModal
-                  phrase={selectedFavorites}
-                  onClose={() => setSelectedFavorites(null)}
+                  phrase={{
+                    ...activeSelection,
+                    favoriteInfo: activeSelection.info,
+                  }}
+                  onClose={() => setActiveSelection(null)}
                 />
               )}
             </AnimatePresence>

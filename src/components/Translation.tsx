@@ -7,31 +7,16 @@ import { DINING_ETIQUETTE_DATA } from "../data/dining";
 import { EMERGENCY_DATA } from "../data/emergency";
 import { NAVIGATION_DATA } from "../data/navigation";
 import { FAVORITES_DATA } from "../data/favorites";
+import { type ActiveSelection } from "../entities/ActiveSelection";
 
 interface Props {
   phrase: string;
   langCode: string;
   langName: string;
-  onShowModal: (translatedText: string, cultureNote: string) => void;
-  onShowDiningModal: (translatedText: string, gestureNote: string) => void;
-  onShowEmergencyModal: (translatedText: string, emergencyInfo: string) => void;
-  onShowNavigationModal: (
-    translatedText: string,
-    navigationInfo: string
-  ) => void;
-  onShowFavoritesModal: (translatedText: string, favoriteInfo: string) => void;
+  onSelect: (selection: ActiveSelection) => void;
 }
 
-const Translation = ({
-  phrase,
-  langCode,
-  langName,
-  onShowModal,
-  onShowDiningModal,
-  onShowEmergencyModal,
-  onShowNavigationModal,
-  onShowFavoritesModal,
-}: Props) => {
+const Translation = ({ phrase, langCode, langName, onSelect }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
 
   const handlePlay = (e: React.MouseEvent) => {
@@ -66,6 +51,12 @@ const Translation = ({
     if (!data?.translatedText) return;
 
     const phraseLower = phrase.toLowerCase();
+
+    const baseData = {
+      native: data.translatedText,
+      translation: phrase,
+      language: langName,
+    };
 
     const diningKeywords = [
       "eat",
@@ -122,23 +113,35 @@ const Translation = ({
     ];
 
     if (diningKeywords.some((key) => phraseLower.includes(key))) {
-      const gestureNote = DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!";
-      onShowDiningModal(data.translatedText, gestureNote);
+      onSelect({
+        ...baseData,
+        type: "dining",
+        info: DINING_ETIQUETTE_DATA[langCode] || "Enjoy your meal!",
+      });
     } else if (emergencyKeywords.some((key) => phraseLower.includes(key))) {
-      const emergencyInfo =
-        EMERGENCY_DATA[langCode] || "Contact local authorities immediately.";
-      onShowEmergencyModal(data.translatedText, emergencyInfo);
+      onSelect({
+        ...baseData,
+        type: "emergency",
+        info: EMERGENCY_DATA[langCode] || "Call for help.",
+      });
     } else if (navigationKeywords.some((key) => phraseLower.includes(key))) {
-      const navigationInfo =
-        NAVIGATION_DATA[langCode] || "Ask for directions politely.";
-      onShowNavigationModal(data.translatedText, navigationInfo);
+      onSelect({
+        ...baseData,
+        type: "navigation",
+        info: NAVIGATION_DATA[langCode] || "Ask for an assistance.",
+      });
     } else if (favoriteKeywords.some((key) => phraseLower.includes(key))) {
-      const favoriteInfo = FAVORITES_DATA[langCode] || "It's a local favorite!";
-      onShowFavoritesModal(data.translatedText, favoriteInfo);
+      onSelect({
+        ...baseData,
+        type: "favorites",
+        info: FAVORITES_DATA[langCode] || "Its a local favorite!",
+      });
     } else {
-      const etiquette =
-        ETIQUETTE_DATA[langCode] || "Be respectful of local customs.";
-      onShowModal(data.translatedText, etiquette);
+      onSelect({
+        ...baseData,
+        type: "general",
+        info: ETIQUETTE_DATA[langCode] || "Be respectful of local customs.",
+      });
     }
   };
 
