@@ -1,22 +1,15 @@
 import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
+import useSearchStore from "../store";
 
-interface Props {
-  onSearch: (searchText: string) => void;
-}
-
-const SearchBar = ({ onSearch }: Props) => {
-  const ref = useRef<HTMLInputElement>(null);
+const SearchBar = () => {
+  const searchQuery = useSearchStore((s) => s.searchQuery);
+  const setSearch = useSearchStore((s) => s.setSearch);
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (ref.current) {
-            onSearch(ref.current.value);
-            ref.current.value = "";
-          }
         }}
       >
         <InputGroup width="100%">
@@ -29,7 +22,8 @@ const SearchBar = ({ onSearch }: Props) => {
             }
           ></InputLeftElement>
           <Input
-            ref={ref}
+            value={searchQuery}
+            onChange={(e) => setSearch(e.target.value)}
             borderRadius={20}
             placeholder="Search for a phrases or category"
             variant="filled"

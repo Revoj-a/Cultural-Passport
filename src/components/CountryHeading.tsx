@@ -1,12 +1,12 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import CountryFlag from "./CountryFlag";
+import useSearchStore from "../store";
 
-interface Props {
-  searchQuery: string;
-}
-
-const CountryHeading = ({ searchQuery }: Props) => {
+const CountryHeading = () => {
+  const searchQuery = useSearchStore((s) => s.searchQuery);
   const heading = `${searchQuery}`;
+
+  if (!searchQuery) return null;
   return (
     <Flex
       display="flex"
@@ -16,7 +16,7 @@ const CountryHeading = ({ searchQuery }: Props) => {
       marginY={8}
     >
       <Heading as="h1">{heading}</Heading>
-      <CountryFlag searchQuery={searchQuery} />
+      <CountryFlag />
     </Flex>
   );
 };

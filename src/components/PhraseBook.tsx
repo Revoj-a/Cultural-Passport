@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import {
   Box,
@@ -18,12 +18,20 @@ import EmergenciesShowModal from "./EmergenciesShowModal";
 import NavigationShowModal from "./NavigationShowModal";
 import FavoritesShowModal from "./FavoritesShowModal";
 import { type ActiveSelection } from "../entities/ActiveSelection";
+import useSearchStore from "../store";
 
 const PhraseBook = () => {
-  const [languageQuery, setLanguageQuery] = useState("");
+  const languageQuery = useSearchStore((s) => s.searchQuery);
+  const setSearch = useSearchStore((s) => s.setSearch);
 
   const [activeSelection, setActiveSelection] =
     useState<ActiveSelection | null>(null);
+
+  useEffect(() => {
+    return () => {
+      setSearch("");
+    };
+  }, [setSearch]);
 
   const categories: Record<string, string> = {
     Greetings: "Hello, nice to meet you!",
@@ -61,14 +69,14 @@ const PhraseBook = () => {
             <Heading color="gold" fontSize="3xl">
               PhraseBook
             </Heading>
-            <SearchBar onSearch={(text) => setLanguageQuery(text)} />
+            <SearchBar />
             <HStack spacing={4}>
               {Object.keys(categories).map((cat) => (
                 <Button
                   key={cat}
                   onClick={() => {
                     setActiveSelection(null);
-                    setLanguageQuery(categories[cat]);
+                    setSearch(categories[cat]);
                   }}
                   size="sm"
                   variant="outline"

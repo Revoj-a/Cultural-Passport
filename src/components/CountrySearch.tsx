@@ -13,12 +13,10 @@ import noImage from "../assets/no-image.jpg";
 import useCountry from "../hooks/useCountry";
 import getCroppedImageUrl from "../services/image-url";
 import CountryCardSkeleton from "./CountryCardSkeleton";
+import useSearchStore from "../store";
 
-interface Props {
-  searchQuery: string;
-}
-
-const CountrySearch = ({ searchQuery }: Props) => {
+const CountrySearch = () => {
+  const searchQuery = useSearchStore((s) => s.searchQuery);
   const { data, isLoading } = useCountry(searchQuery);
 
   const results = data?.filter(

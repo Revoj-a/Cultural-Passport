@@ -1,11 +1,9 @@
 import { Box, Image } from "@chakra-ui/react";
 import useCountryFlag from "../hooks/useCountryFlag";
+import useSearchStore from "../store";
 
-interface Props {
-  searchQuery: string;
-}
-
-const CountryFlag = ({ searchQuery }: Props) => {
+const CountryFlag = () => {
+  const searchQuery = useSearchStore((s) => s.searchQuery);
   const { data, isLoading } = useCountryFlag(searchQuery);
 
   if (isLoading || !data?.[0]) return null;
