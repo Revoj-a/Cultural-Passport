@@ -9,17 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaStar, FaTimes } from "react-icons/fa";
-import type { ActiveSelection } from "../entities/ActiveSelection";
+import type { PhraseModalProps } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface Props {
-  phrase: ActiveSelection;
-  onClose: () => void;
-}
-
-const FavoritesShowModal = ({ phrase, onClose }: Props) => {
+const FavoritesShowModal = ({ phrase, onClose }: PhraseModalProps) => {
   return (
     <MotionCenter
       position="fixed"

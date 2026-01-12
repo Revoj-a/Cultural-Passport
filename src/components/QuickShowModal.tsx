@@ -9,17 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaInfoCircle, FaTimes } from "react-icons/fa";
-import type { ActiveSelection } from "../entities/ActiveSelection";
+import type { PhraseModalProps } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface Props {
-  phrase: ActiveSelection;
-  onClose: () => void;
-}
-
-const QuickShowModal = ({ phrase, onClose }: Props) => {
+const QuickShowModal = ({ phrase, onClose }: PhraseModalProps) => {
   return (
     <MotionCenter
       position="fixed"
