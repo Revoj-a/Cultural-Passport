@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Spinner, IconButton } from "@chakra-ui/react";
+import { HStack, VStack, Text, IconButton } from "@chakra-ui/react";
 import useTranslate from "../hooks/useTranslate";
 import { FaPlay } from "react-icons/fa";
 import type React from "react";
@@ -8,6 +8,7 @@ import { EMERGENCY_DATA } from "../data/emergency";
 import { NAVIGATION_DATA } from "../data/navigation";
 import { FAVORITES_DATA } from "../data/favorites";
 import { type ActiveSelection } from "../entities/ActiveSelection";
+import TranslationSkeleton from "./TranslationSkeleton";
 
 interface Props {
   phrase: string;
@@ -18,6 +19,15 @@ interface Props {
 
 const Translation = ({ phrase, langCode, langName, onSelect }: Props) => {
   const { data, isLoading, error } = useTranslate(phrase, langCode);
+
+  if (isLoading) return <TranslationSkeleton />;
+
+  if (error)
+    return (
+      <Text color="red.300" fontSize="xs">
+        Connect to the Docker to see {langName}
+      </Text>
+    );
 
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -145,13 +155,6 @@ const Translation = ({ phrase, langCode, langName, onSelect }: Props) => {
     }
   };
 
-  if (error)
-    return (
-      <Text color="red.300" fontSize="xs">
-        Connect to the Docker to see {langName}
-      </Text>
-    );
-
   return (
     <HStack
       justify="space-between"
@@ -168,7 +171,7 @@ const Translation = ({ phrase, langCode, langName, onSelect }: Props) => {
           {langName}
         </Text>
         <Text fontSize="lg" color="black" fontWeight="bold">
-          {isLoading ? <Spinner size="xs" /> : data?.translatedText}
+          {data?.translatedText}
         </Text>
       </VStack>
       <IconButton
