@@ -8,8 +8,7 @@ interface Props {
 const CountryFlag = ({ searchQuery }: Props) => {
   const { data, isLoading } = useCountryFlag(searchQuery);
 
-  if (isLoading) return null;
-  if (!data || data.length === 0) return null;
+  if (isLoading || !data?.[0]) return null;
 
   return (
     <Box ml={4} display="flex" alignItems="center">
