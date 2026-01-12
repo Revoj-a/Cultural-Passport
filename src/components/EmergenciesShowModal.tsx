@@ -9,19 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaExclamationTriangle, FaTimes } from "react-icons/fa";
+import type { ActiveSelection } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface EmergencyPhrase {
-  native: string;
-  translation: string;
-  language: string;
-  emergencyInfo: string;
-}
-
 interface Props {
-  phrase: EmergencyPhrase;
+  phrase: ActiveSelection;
   onClose: () => void;
 }
 
@@ -98,7 +92,7 @@ const EmergenciesShowModal = ({ phrase, onClose }: Props) => {
               </Text>
             </HStack>
             <Text fontSize="sm" lineHeight="tall" textAlign="justify">
-              {phrase.emergencyInfo}
+              {phrase.info}
             </Text>
           </Box>
         </VStack>
