@@ -9,19 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaInfoCircle, FaTimes } from "react-icons/fa";
+import type { ActiveSelection } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface Phrase {
-  native: string;
-  translation: string;
-  language: string;
-  etiquette: string;
-}
-
 interface Props {
-  phrase: Phrase;
+  phrase: ActiveSelection;
   onClose: () => void;
 }
 
@@ -113,7 +107,7 @@ const QuickShowModal = ({ phrase, onClose }: Props) => {
               lineHeight="tall"
               textAlign="justify"
             >
-              {phrase.etiquette}
+              {phrase.info}
             </Text>
           </Box>
         </VStack>
