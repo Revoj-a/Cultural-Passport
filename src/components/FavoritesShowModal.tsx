@@ -9,19 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaStar, FaTimes } from "react-icons/fa";
+import type { ActiveSelection } from "../entities/ActiveSelection";
 
 const MotionBox = motion(Box);
 const MotionCenter = motion(Center);
 
-interface FavoritesPhrase {
-  native: string;
-  translation: string;
-  language: string;
-  favoriteInfo: string;
-}
-
 interface Props {
-  phrase: FavoritesPhrase;
+  phrase: ActiveSelection;
   onClose: () => void;
 }
 
@@ -97,7 +91,7 @@ const FavoritesShowModal = ({ phrase, onClose }: Props) => {
               </Text>
             </HStack>
             <Text fontSize="sm" lineHeight="tall" textAlign="justify">
-              {phrase.favoriteInfo}
+              {phrase.info}
             </Text>
           </Box>
         </VStack>
